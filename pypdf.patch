@@ -1,0 +1,12 @@
+719c719,723
+<         rct = RectangleObject((0, 0, _rct[2] - _rct[0], _rct[3] - _rct[1]))
+---
+>         r0 = _rct[0].get_object() if isinstance(_rct[0], IndirectObject) else _rct[0]
+>         r1 = _rct[1].get_object() if isinstance(_rct[1], IndirectObject) else _rct[1]
+>         r2 = _rct[2].get_object() if isinstance(_rct[2], IndirectObject) else _rct[2]
+>         r3 = _rct[3].get_object() if isinstance(_rct[3], IndirectObject) else _rct[3]
+>         rct = RectangleObject((0, 0, r2 - r0, r3 - r1))
+932c936
+<                             value if value in k[AA.AP]["/N"] else "/Off"
+---
+>                             value if AA.AP in k and value in k[AA.AP]["/N"] else "/Off"
