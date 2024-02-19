@@ -132,7 +132,7 @@ client = discord.Client(intents=intents)
 intents.message_content = True # Il bot deve poter leggere almeno i messaggi
 
 # setup delle variabili globali del bot
-creator_process = None  # Se è attivo il programma di creazione dei personaggi, va salvato l'oggetto corrispondente qui
+creator_process = {}  # Se è attivo il programma di creazione dei personaggi, va salvato l'oggetto corrispondente qui, con lo username dell'autore come chiave; questo consente di creare più personaggi contemporaneamente
 prompt = ["\n>>>\t",pexpect.EOF] # il prompt atteso dal programma di creazione dei personaggi, indica che la stampa del messaggio è pronta
 
 # gestione degli eventi 
@@ -153,43 +153,43 @@ async def on_message(msg):
   author = str(msg.author).split("#")[0] # estrae il nome dell'autore del messaggio
   content = msg.content
   # creazione di un personaggio già iniziata
-  if creator_process: # se è attivo il processo di creazione, interagisce con esso
-    creator_process.sendline(content)  # invia il contenuto del messaggio 
-    p = creator_process.expect(prompt) # attende che sia completata sulla pipe la risposta dal programma di creazione
-    response = creator_process.before  # estrae la risposta dalla pipe: tutto ciò che è stato stampato
+  if author in creator_process: # se è attivo il processo di creazione, interagisce con esso
+    creator_process[author].sendline(content)  # invia il contenuto del messaggio 
+    p = creator_process[author].expect(prompt) # attende che sia completata sulla pipe la risposta dal programma di creazione
+    response = creator_process[author].before  # estrae la risposta dalla pipe: tutto ciò che è stato stampato
     if p==0: # prompt[0] è il vero prompt, indica che la creazione non è finita
       await msg.channel.send(response) # invia la risposta
     else :   # prompt[1] è la fine dell'input, indica che la creazione è finita e si può preparare il PDF
       nome  = response.split("\n")[-2].strip() # estrae il nome del personaggio dall'output del programma
-      creator_process = pexpect.spawnu(f'./pdffields.py json/{re.escape(nome)}.json') # chiama il convertitore a PDF
-      creator_process.expect(pexpect.EOF) # attende il completamento della conversione
+      creator_process[author] = pexpect.spawnu(f'./pdffields.py json/{re.escape(nome)}.json') # chiama il convertitore a PDF
+      creator_process[author].expect(pexpect.EOF) # attende il completamento della conversione
       await msg.channel.send(f"**{author}** ha creato {nome}", file=discord.File(f'./pdf/{nome}.pdf')) # invia il file PDF sulla chat
-      creator_process = None # rimuove il creator_process, riabilitando gli altri comandi
+      del creator_process[author] # rimuove il creator_process, riabilitando gli altri comandi
   # tutti i comandi successivi sono vincolati a creator_process == None: durante la creazione del personaggio non è possibile eseguire altri comandi
   # prova a parsare il messaggio come lancio di dadi ed eseguirlo
   res = parse_and_roll(content)   
-  if res and not creator_process: 
+  if res and author not in creator_process: 
     await msg.channel.send(f'**{author}**'+res)
   # creazione di un personaggio casuale; questo comando è autocontenuto, quindi creator_process viene creato e poi distrutto
-  if '!itdsrand' in content and not creator_process:
-    creator_process = pexpect.spawnu('./itdschargen.py r') # attiva il programma di creazione dei personaggi
-    creator_process.expect(pexpect.EOF)
-    response = creator_process.before
+  if '!itdsrand' in content and author not in creator_process:
+    creator_process[author] = pexpect.spawnu('./itdschargen.py r') # attiva il programma di creazione dei personaggi
+    creator_process[author].expect(pexpect.EOF)
+    response = creator_process[author].before
     nome  = response.split("\n")[-2].strip()
     print(f"randomly created {re.escape(nome)}")
-    creator_process = pexpect.spawnu(f'./pdffields.py json/{re.escape(nome)}.json')
-    creator_process.expect(pexpect.EOF)
+    creator_process[author] = pexpect.spawnu(f'./pdffields.py json/{re.escape(nome)}.json')
+    creator_process[author].expect(pexpect.EOF)
     await msg.channel.send(f"**{author}** ha creato {nome}", file=discord.File(f'./pdf/{nome}.pdf'))
-    creator_process = None # rimuove il creator_process
+    del creator_process[author] # rimuove il creator_process
   # creazione guidata di un personaggio, inizializzazione
-  if '!itdsc' in content and not creator_process:
-    creator_process = pexpect.spawnu(['./itdschargen.py']) # attiva il programma di creazione dei personaggi
-    creator_process.expect(prompt)
-    response = creator_process.before
+  if '!itdsc' in content and author not in creator_process:
+    creator_process[author] = pexpect.spawnu(['./itdschargen.py']) # attiva il programma di creazione dei personaggi
+    creator_process[author].expect(prompt)
+    response = creator_process[author].before
     print("Creating character")
     await msg.channel.send(response)
   # generazione di nomi
-  if ('!n' in content or '!nomi' in content) and not creator_process:
+  if ('!n' in content or '!nomi' in content) and author not in creator_process:
     # impostazioni di default
     n=1 
     language='Latin'
@@ -206,7 +206,7 @@ async def on_message(msg):
     response = '\n'.join([ namegen.get_name(gender,choice(language),True,'random') for i in range(n) ])
     await msg.channel.send(response)
   # messaggio d'aiuto
-  if '!h' in content and not creator_process:
+  if '!h' in content and author not in creator_process:
     response = f"""Messaggio di aiuto:
  Creazione dei personaggi giocanti:
     !itdsc       Creazione del personaggio interattiva
