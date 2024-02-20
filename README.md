@@ -32,14 +32,17 @@ Con un po' di fortuna, le stesse cose potrebbero funzionare anche su altri siste
 ### TODO
 Idee per estensioni, divise per argomento.
 
-#### Funzionalità
- - Mantenere per ciascun giocatore un personaggio con i punteggi del quale fare tiri senza dover specificare i punteggi
+#### Funzionalità del bot e del generatore
+ - Mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `!r volontà +2` o anche un menù\virtual keyboard
  - Gestire l'equipaggiamento con la qualità dello stesso
  - Gestire l'avanzamento (e talenti e ordini)
 
 #### Supporto bot/hosting/etc.
- - Supportare la creazione contemporanea da più giocatori/magistri
+ - Verificare il corretto funzionamento della creazione contemporanea da più giocatori/magistri
  - Supportare un modo di selezionare le opzioni più adatto ad un bot (virtual keyboard?)
- - Generare la scheda in un formato diverso se `pypdf` non funziona 
+ - Generare la scheda in un formato diverso se `pypdf` non funziona (banalmente in formato testuale?), eseguendo la verifica in modo automatico (tentando di creare un PG casuale subito dopo l'installazione)
  - Sanitizzare l'input dal bot (in ottica di hostare il bot da qualche parte)
 
+#### Portabilità e facilità di installazione
+ - Verificare funzionalità sotto Windows e MacOS
+ - Quasi sicuramente sotto Windows ci saranno da fare piccoli aggiustamenti, in primis usare le primitive portabili di os.path
