@@ -62,4 +62,4 @@ Modifiche per semplificare l'installazione
  - Verificare funzionalità sotto Windows e MacOS
  - Quasi sicuramente sotto Windows ci saranno da fare piccoli aggiustamenti, in primis usare le primitive portabili di os.path
  - Comprendere la natura del problema nella scheda e, se è il caso, fare un bug report per `pypdf` con un MVE
-
+ - Generare dei test di unità e integrazione
