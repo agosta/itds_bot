@@ -1,0 +1,332 @@
+borghesi:
+  cavaliere di ventura:
+    abilità:
+    - armi da guerra
+    - cavalcare
+    - arte della guerra
+    - usi e costumi
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+  cerusico:
+    abilità:
+    - arti liberali
+    - alchimia
+    - guarigione
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: medico
+  cortigiano:
+    abilità:
+    - autorità
+    - usi e costumi
+    - arti liberali
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+  fuoriuscito:
+    abilità:
+    - armi da guerra
+    - cavalcare
+    - arti liberali
+    - usi e costumi
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+  guardiacaccia:
+    abilità:
+    - balestre
+    - armi da guerra
+    - sopravvivenza
+    - furtività
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: boscaiolo
+  mastro di gilda:
+    abilità:
+    - manualità
+    - arti liberali
+    - armi comuni
+    - mercatura
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: funzionario
+    - abilità: professione/gratia
+      specialità: cortigiano
+    - abilità: artigiano
+      specialità: gioelliere
+    - abilità: artigiano
+      specialità: pittore
+    - abilità: artigiano
+      specialità: meccanico
+  mercante:
+    abilità:
+    - arti liberali
+    - usi e costumi
+    - mercatura
+    - cavalcare
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: carovaniere
+  navigatore:
+    abilità:
+    - arti liberali
+    - usi e costumi
+    - mercatura
+    - sopravvivenza
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: marinaio
+    - abilità: professione/mens
+      specialità: piloto
+  novizio:
+    abilità:
+    - teologia
+    - usi e costumi
+    - arti liberali
+    - guarigione
+    abilità_speciali: []
+  precettore:
+    abilità:
+    - arti liberali
+    - alchimia
+    - storia e leggende
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: precettore
+nobili:
+  aristocratico:
+    abilità:
+    - armi da guerra
+    - arte della guerra
+    - cavalcare
+    - arti liberali
+    - autorità
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: amministratore
+  artista:
+    abilità:
+    - intrattenere
+    - arti liberali
+    - manualità
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+    - abilità: artigiano
+      specialità: pittore
+  astrologo:
+    abilità:
+    - arti arcane
+    - alchimia
+    - arti liberali
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+  cavaliere:
+    abilità:
+    - armi da guerra
+    - arte della guerra
+    - cavalcare
+    - arti liberali
+    - autorità
+    abilità_speciali: []
+  emissario:
+    abilità:
+    - arti liberali
+    - usi e costumi
+    - autorità
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: messaggero
+  professore:
+    abilità:
+    - arti arcane
+    - alchimia
+    - teologia
+    - arti liberali
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: precettore
+  trovatore:
+    abilità:
+    - intrattenere
+    - arti liberali
+    - storia e leggende
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: cortigiano
+  vicario:
+    abilità:
+    - teologia
+    - autorità
+    - arti liberali
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: amministratore
+popolani:
+  accolito:
+    abilità:
+    - empatia
+    - teologia
+    - arti liberali
+    - guarigione
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: messaggero
+  agricoltore:
+    abilità:
+    - atletica
+    - armi comuni
+    - empatia
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: contadino
+    - abilità: professione/fortitudo
+      specialità: pastore
+  armigero:
+    abilità:
+    - armi comuni
+    - atletica
+    - armi da guerra
+    - archi
+    - usi e costumi
+    abilità_speciali: []
+  artigiano:
+    abilità:
+    - manualità
+    - armi comuni
+    - mercatura
+    abilità_speciali:
+    - abilità: artigiano
+      specialità: fabbro
+    - abilità: artigiano
+      specialità: conciatore
+    - abilità: artigiano
+      specialità: sarto
+    - abilità: artigiano
+      specialità: falegname
+  chirurgo:
+    abilità:
+    - armi corte
+    - guarigione
+    - empatia
+    abilità_speciali:
+    - abilità: professione/mens
+      specialità: medico
+  goliardo:
+    abilità:
+    - arti liberali
+    - armi da guerra
+    - intrattenere
+    - usi e costumi
+    abilità_speciali: []
+  guida:
+    abilità:
+    - archi
+    - sopravvivenza
+    - furtività
+    - usi e costumi
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: boscaiolo
+  menestrello:
+    abilità:
+    - intrattenere
+    - arti liberali
+    - manualità
+    - usi e costumi
+    abilità_speciali: []
+  rigattiere:
+    abilità:
+    - mercatura
+    - manualità
+    - usi e costumi
+    abilità_speciali:
+    - abilità: artigiano
+      specialità: sarto
+    - abilità: artigiano
+      specialità: falegname
+umili:
+  bracciante:
+    abilità:
+    - sopravvivenza
+    - empatia
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: contadino
+    - abilità: professione/fortitudo
+      specialità: pastore
+  brigante:
+    abilità:
+    - armi corte
+    - armi comuni
+    - archi
+    - furtività
+    - sopravvivenza
+    - raggirare
+    abilità_speciali: []
+  eremita:
+    abilità:
+    - empatia
+    - armi corte
+    - armi comuni
+    - sopravvivenza
+    - guarigione
+    - manualità
+    abilità_speciali: []
+  girovago:
+    abilità:
+    - armi corte
+    - armi comuni
+    - raggirare
+    - furtività
+    - sopravvivenza
+    - intrattenere
+    - manualità
+    abilità_speciali:
+    - abilità: artigiano
+      specialità: fabbro
+  ladro:
+    abilità:
+    - armi corte
+    - furtività
+    - raggirare
+    - atletica
+    - manualità
+    abilità_speciali: []
+  mercenario:
+    abilità:
+    - armi corte
+    - armi comuni
+    - archi
+    - furtività
+    - sopravvivenza
+    abilità_speciali: []
+  oblato:
+    abilità:
+    - empatia
+    - usi e costumi
+    - sopravvivenza
+    - guarigione
+    - manualità
+    abilità_speciali:
+    - abilità: professione/fortitudo
+      specialità: contadino
+    - abilità: professione/fortitudo
+      specialità: pastore
+  saltimbanco:
+    abilità:
+    - raggirare
+    - furtività
+    - intrattenere
+    - manualità
+    abilità_speciali: []
+  servo:
+    abilità:
+    - empatia
+    - usi e costumi
+    - manualità
+    abilità_speciali:
+    - abilità: professione/gratia
+      specialità: messaggero

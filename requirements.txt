@@ -38,7 +38,9 @@ pexpect==4.9.0
     # via -r requirements.in
 ptyprocess==0.7.0
     # via pexpect
-pypdf==4.0.1
+pypdf==4.0.2
+    # via -r requirements.in
+pyyaml==6.0.1
     # via -r requirements.in
 strenum==0.4.15
     # via -r requirements.in

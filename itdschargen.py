@@ -138,7 +138,7 @@ def e_talento(self):
 
 data = {
 
-'lingue' : [ 'Arabo', 'Castigliano', 'Catalano', 'Cimrico', 'Ebraico', 'Francese', 'Frisone', 'Gaelico', 'Gallego', 'Greco', 'Inglese', 'Ladino', 'Latino', 'Portoghese', 'Provenzale', 'Scandinavo', 'Slavo', 'Tedesco', 'Turco', 'Italiano', 'Greco antico', 'Aramaico' ],
+'lingue' : [ 'Arabo', 'Castigliano', 'Catalano', 'Cimrico', 'Ebraico', 'Francese', 'Frisone', 'Gaelico', 'Gallego', 'Greco', 'Inglese', 'Ladino', 'Latino', 'Portoghese', 'Provenzale', 'Scandinavo', 'Slavo', 'Tedesco', 'Turco', 'Italiano', 'Greco antico', 'Aramaico', 'Ungherese' ],
 
 'valori' : {
  'fede' : [ 'fides', 'impietas'],
@@ -855,32 +855,6 @@ data = {
   },
 """
 
-lingue_per_regione = {
-'Italia'     : 'Italian', 
-'Firenze'    : 'Italian', 
-'Roma'       : 'Italian', 
-'Milano'     : 'Italian', 
-'Venezia'    : 'Italian', 
-'Bologna'    : 'Italian', 
-'Napoli'     : 'Italian', 
-'Palermo'    : 'Italian', 
-'Genova'     : 'Italian', 
-'Pisa'       : 'Italian', 
-'Francia'    : 'French', 
-'Occitania'  : 'Occitan', 
-'Castiglia'  : 'Spanish', 
-'Portogallo' : 'Portuguese', 
-'Galizia'    : 'Spanish', 
-'Bisanzio'   : 'Greek', 
-'Inghilterra': 'English', 
-'Galles'     : 'Welsh', 
-'Scozia'     : 'Gaelic', 
-'Germania'   : 'German', 
-'Bulgaria'   : 'Slavonic', 
-'Andalusia'  : 'Arabic',
-'Catalogna'  : 'Catalan',
-}
-
 lingue_to_ita = {
 'Italian' : 'Italiano',
 'French'  : 'Francese',
@@ -895,273 +869,19 @@ lingue_to_ita = {
 'Greek'   : 'Greco',
 'Spanish' : 'Castigliano',
 'Portuguese':'Portoghese',
+'Norse'   : 'Norreno',
+'Hungarian':'Ungherese',
 } 
 
-# non utilizzata, ma potrebbe essere utile in futuro per generare le culture in modo meno casuale
-culture = {
- 'Francia'   : ['cortese','spirituale'],
- 'Andalusia' : ['cortese','spirituale'],
- 'Fiandre'   : ['laboriosa', 'tenace'],
- 'Normandia' : ['guerresca', 'intraprendente'],
- 'Danimarca' : ['guerresca', 'tenace'],
- 'Italia'    : ['laboriosa', 'intraprendente'],
- 'Scozia'    : ['guerresca', 'antica'], 
- 'Guascogna' : ['antica', 'rurale'],
- 'Catalogna' : ['militare', 'intraprendente'],
- 'Bulgaria'  : ['guerresca', 'rurale'],
- 'Svizzera'  : ['militare', 'rurale'],
- 'Scandinavia':['guerresca', 'tenace'],
- 'Galles'    : ['militare', 'antica'],
- 'Germania'  : ['laboriosa', 'tenace'],
- 'Polonia'   : ['tenace', 'rurale'],
- 'Cordova'   : ['erudita', 'urbana'],
- 'Costantinopoli' : ['spirituale', 'urbana'],
- 'Firenze'   : ['erudita', 'intraprendente'],
- 'Bologna'   : ['erudita', 'militare'],
- 'Venezia'   : ['urbana', 'intraprendente'],
- 'Padova'    : ['erudita', 'laboriosa'],
- 'Pisa'      : ['intraprendente', 'tenace'],
- 'Milano'    : ['urbana', 'laboriosa'],
- 'Parigi'    : ['erudita', 'spirituale'],
- 'Palermo'   : ['meticcio', 'urbano'],
-}
 
-professioni = {
-  'umili' : {
-    'bracciante' : {
-      'abilità' : [ 'sopravvivenza', 'atletica', 'armi corte', 'empatia' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'contadino' },
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'pastore' },
-        ],      
-    }, 
-    'brigante' : {
-      'abilità' : ['armi corte', 'armi comuni', 'archi', 'furtività', 'sopravvivenza', 'guarigione', 'raggirare' ],
-      'abilità_speciali' : [],    
-    }, 
-    'eremita' : {
-      'abilità' : ['empatia', 'armi corte', 'armi comuni', 'usi e costumi', 'sopravvivenza', 'guarigione', 'manualità' ],
-      'abilità_speciali' : [],    
-    }, 
-    'girovago' : {
-      'abilità' : ['armi corte', 'armi comuni', 'raggirare', 'furtività', 'sopravvivenza', 'intrattenere', 'manualità' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'artigiano', 'specialità' : 'fabbro' },
-      ],    
-    }, 
-    'ladro' : {
-      'abilità' : ['armi corte', 'empatia', 'furtività', 'sopravvivenza', 'raggirare', 'atletica', 'manualità' ],
-      'abilità_speciali' : [],    
-    },
-    'mercenario' : {
-      'abilità' : ['armi corte', 'armi comuni', 'archi', 'furtività', 'sopravvivenza', 'guarigione', 'lotta' ],
-      'abilità_speciali' : [],    
-    }, 
-    'oblato' : {
-      'abilità' : ['empatia', 'armi corte', 'usi e costumi', 'sopravvivenza', 'guarigione', 'manualità' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'contadino' },
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'pastore' },
-      ],    
-    }, 
-    'saltimbanco' : {
-      'abilità' : ['armi corte', 'armi comuni', 'raggirare', 'furtività', 'sopravvivenza', 'intrattenere', 'manualità' ],
-      'abilità_speciali' : [ ],    
-    }, 
-    'servo' : {
-      'abilità' : ['empatia', 'armi corte', 'usi e costumi', 'sopravvivenza', 'guarigione', 'manualità' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/gratia', 'specialità' : 'messaggero' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'locandiere' },
-      ],    
-    },
-  },
-  'popolani' : {
-    'accolito' : {
-      'abilità' : ['empatia', 'armi comuni', 'usi e costumi', 'arti liberali', 'guarigione', 'manualità' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/gratia', 'specialità' : 'messaggero' },
-      ],        
-    }, 
-    'agricoltore' : {
-      'abilità' : [ 'mercatura', 'atletica', 'armi comuni', 'empatia' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'contadino' },
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'pastore' },
-        ],      
-    }, 
-    'armigero' : {
-      'abilità' : [ 'armi comuni', 'atletica', 'armi corte', 'armi da guerra', 'lotta', 'archi', 'usi e costumi' ],
-      'abilità_speciali' : [],      
-    }, 
-    'artigiano' : {
-      'abilità' : [ 'manualità', 'atletica', 'armi comuni', 'usi e costumi', 'mercatura' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'artigiano', 'specialità' : 'fabbro' },
-        { 'abilità' : 'artigiano', 'specialità' : 'conciatore' },
-        { 'abilità' : 'artigiano', 'specialità' : 'sarto' },
-        { 'abilità' : 'artigiano', 'specialità' : 'falegname' },
-        ],      
-    }, 
-    'chirurgo' : {
-      'abilità' : [ 'mercatura', 'armi corte', 'guarigione', 'empatia', 'usi e costumi' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/mens', 'specialità' : 'medico' },
-        ],      
-    },
-    'goliardo' : {
-      'abilità' : [ 'arti liberali', 'armi corte', 'armi da guerra', 'intrattenere', 'usi e costumi', 'manualità', 'lotta' ],
-      'abilità_speciali' : [],      
-    }, 
-    'guida' : {
-      'abilità' : [ 'archi', 'armi corte', 'sopravvivenza', 'furtività', 'usi e costumi' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'boscaiolo' },
-        ],      
-    }, 
-    'menestrello' : {
-      'abilità' : [ 'intrattenere', 'armi corte', 'arti liberali', 'manualità', 'usi e costumi' ],
-      'abilità_speciali' : [],      
-    }, 
-    'rigattiere' : {
-      'abilità' : [ 'mercatura', 'armi corte', 'armi comuni', 'manualità', 'usi e costumi' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'artigiano', 'specialità' : 'sarto' },
-        { 'abilità' : 'artigiano', 'specialità' : 'falegname' },
-        ],      
-    },
-  },
-  'borghesi' : {
-    'cavaliere di ventura' : {
-      'abilità' : [ 'armi da guerra', 'armi comuni', 'cavalcare', 'arte della guerra', 'usi e costumi', 'lotta' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        ],      
-    }, 
-    'cerusico' : {
-      'abilità' : [ 'armi corte', 'arti liberali', 'alchimia', 'usi e costumi', 'guarigione' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/mens', 'specialità' : 'medico' },
-        ],      
-    }, 
-    'cortigiano' : {
-      'abilità' : [ 'intrattenere', 'storia e leggende', 'autorità', 'usi e costumi', 'arti liberali' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        ],      
-    }, 
-    'fuoriuscito' : {
-      'abilità' : [ 'armi da guerra', 'armi corte', 'cavalcare', 'arti liberali', 'usi e costumi' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        ],      
-    }, 
-    'guardiacaccia' : {
-      'abilità' : [ 'balestre', 'armi da guerra', 'sopravvivenza', 'furtività', 'usi e costumi' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'boscaiolo' },
-        ],      
-    },
-    'mastro di gilda' : {
-      'abilità' : [ 'manualità', 'arti liberali', 'armi comuni', 'usi e costumi', 'mercatura' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/mens', 'specialità' : 'funzionario' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'artigiano', 'specialità' : 'gioelliere' },
-        { 'abilità' : 'artigiano', 'specialità' : 'pittore' },
-        { 'abilità' : 'artigiano', 'specialità' : 'meccanico' },
-        ],      
-    }, 
-    'mercante' : {
-      'abilità' : [ 'empatia', 'arti liberali', 'armi comuni', 'usi e costumi', 'mercatura', 'cavalcare' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'marinaio' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'carovaniere' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'oste' },
-        ],      
-    }, 
-    'navigatore' : {
-      'abilità' : [ 'storia e leggende', 'arti liberali', 'balestre', 'usi e costumi', 'mercatura', 'sopravvivenza' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/fortitudo', 'specialità' : 'marinaio' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'piloto' },
-        ],      
-    }, 
-    'novizio' : {
-      'abilità' : ['teologia', 'armi comuni', 'usi e costumi', 'arti liberali', 'guarigione', 'storia e leggende' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/gratia', 'specialità' : 'messaggero' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'precettore' },
-      ],        
-    },
-    'precettore' : {
-      'abilità' : ['teologia', 'usi e costumi', 'arti liberali', 'alchimia', 'storia e leggende' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/gratia', 'specialità' : 'precettore' },
-      ],        
-    },
-  },
-  'nobili' : {
-    'aristocratico' : {
-      'abilità' : [ 'armi da guerra', 'arte della guerra', 'cavalcare', 'arti liberali', 'usi e costumi', 'autorità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'amministratore' },
-        ],      
-    }, 
-    'artista' : {
-      'abilità' : [ 'armi da guerra', 'alchimia', 'intrattenere', 'arti liberali', 'usi e costumi', 'storia e leggende', 'manualità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'artigiano', 'specialità' : 'pittore' },
-        ],      
-    }, 
-    'astrologo' : {
-      'abilità' : [ 'arti arcane', 'alchimia', 'teologia', 'arti liberali', 'usi e costumi', 'autorità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'piloto' },
-        ],      
-    }, 
-    'cavaliere' : {
-      'abilità' : [ 'armi da guerra', 'arte della guerra', 'cavalcare', 'arti liberali', 'usi e costumi', 'autorità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        ],      
-    }, 
-    'emissario' : {
-      'abilità' : [ 'armi da guerra', 'intrattenere', 'cavalcare', 'arti liberali', 'usi e costumi', 'autorità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'messaggero' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'funzionario' },
-        ],      
-    },
-    'professore' : {
-      'abilità' : [ 'arti arcane', 'alchimia', 'teologia', 'arti liberali', 'usi e costumi', 'autorità', 'storia e leggende' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'precettore' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'medico' },
-        ],      
-    }, 
-    'trovatore' : {
-      'abilità' : [ 'armi da guerra', 'intrattenere', 'cavalcare', 'arti liberali', 'usi e costumi', 'storia e leggende', 'manualità' ],
-      'abilità_speciali' : [ 
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/gratia', 'specialità' : 'messaggero' },
-        ],      
-    }, 
-    'vicario' : {
-      'abilità' : ['teologia', 'autorità', 'usi e costumi', 'arti liberali', 'storia e leggende' ],
-      'abilità_speciali' : [
-        { 'abilità' : 'professione/gratia', 'specialità' : 'cortigiano' },
-        { 'abilità' : 'professione/mens', 'specialità' : 'amministratore' },
-      ],        
-    }, 
-  },
-}
-
+# Carica i dati esterni dai file YAML corrispondenti
+import yaml
+with open("data/professioni.yaml","r") as fin:
+  professioni = yaml.load(fin.read(), yaml.Loader)
+with open("data/tratti.yaml","r") as fin:
+  tratti = yaml.load(fin.read(), yaml.Loader)
+  tratti_per_regione = { i : tratti[i]['tratti'] for i in tratti }
+  lingue_per_regione = { i : tratti[i]['lingua'] for i in tratti }
 
 
 import re
@@ -1377,6 +1097,7 @@ def ainput(nome, ecls, pers=None, remaining=1):
      try :
        l1=[ a for a in ab if (a not in pers.abilità or not pers.abilità[a]) ]
        l2=[ a for a in sab if (a not in pers.abilità or not pers.abilità[a]) ]
+       l=l1+l2
        if len(l1) or (not len(pers.professione) and not len(pers.artigiano)):
          return choice(l)
      except Exception:
@@ -1411,7 +1132,12 @@ def distanza_abilità(ceto, abilità):
       return distanza_ceti(c,ceto)
   return 0
 
-def input_abilità_speciale(tipo, mestiere=False):
+def input_abilità_speciale(tipo, pers, mestiere=False):
+  global random_gen
+  if random_gen : 
+    l = [ e for e in professioni[pers.ceto][pers.mestiere]['abilità_speciali'] if e['abilità']==tipo ]
+    try : return choice(l)
+    except Exception : pass    
   #print(tipo, mestiere)
   if tipo == 'artigiano':
     sottotipo = sinput('caratteristica di riferimento',['fortitudo','mens','prudentia'])
@@ -1421,8 +1147,6 @@ def input_abilità_speciale(tipo, mestiere=False):
     sottotipo=tipo.split('/')[-1]
     nome = sinput('professione',data['abilità speciali']['professione'][sottotipo])
     return AbilitàSpeciale(nome=nome,caratteristica=sottotipo,grado=1,mestiere=mestiere)
-
-
 
 def input_info_base(genere):
   global random_gen
@@ -1441,6 +1165,18 @@ def input_mestiere(pers):
     return choice(list(professioni[pers.ceto].keys()))
   else :
     return input("Mestiere:\n>>>\t")
+
+def input_cultura(pers):
+  global random_gen
+  if random_gen :
+    return tratti_per_regione[pers.luogo_nascita]
+  else :
+    cultura1 = cinput('tratto culturale', Culture)
+    while True: # assicura due tratti diversi
+      cultura2 = cinput('tratto culturale', Culture)
+      if cultura2!=cultura1 : break
+    return cultura1, cultura2
+
 
 # CREAZIONE DEL PERSONAGGIO
 def creazione(random=False):
@@ -1470,10 +1206,7 @@ def creazione(random=False):
       if data['caratteristiche'][c.name]['base']==a : 
         p.abilità[a].grado=1
   # Tratti culturali
-  cultura1 = cinput('tratto culturale', Culture)
-  while True: # assicura due tratti diversi
-    cultura2 = cinput('tratto culturale', Culture)
-    if cultura2!=cultura1 : break
+  cultura1,cultura2 = input_cultura(p)
   p.cultura=(cultura1,cultura2)
   data['culture'][cultura1]['vantaggio'](p)
   data['culture'][cultura2]['vantaggio'](p)

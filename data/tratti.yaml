@@ -1,0 +1,150 @@
+Andalusia:
+  lingua: Arabic
+  tratti:
+  - cortese
+  - spirituale
+Bologna:
+  lingua: Italian
+  tratti:
+  - erudita
+  - militare
+Bulgaria:
+  lingua: Slavonic
+  tratti:
+  - guerresca
+  - rurale
+Castiglia:
+  lingua: Spanish
+  tratti:
+  - militare
+  - spirituale
+Catalogna:
+  lingua: Catalan
+  tratti:
+  - militare
+  - intraprendente
+Cordova:
+  lingua: Arabic
+  tratti:
+  - erudita
+  - urbana
+Costantinopoli:
+  lingua: Greek
+  tratti:
+  - spirituale
+  - urbana
+Danimarca:
+  lingua: Norse
+  tratti:
+  - guerresca
+  - tenace
+Fiandre:
+  lingua: German
+  tratti:
+  - laboriosa
+  - tenace
+Firenze:
+  lingua: Italian
+  tratti:
+  - erudita
+  - intraprendente
+Francia:
+  lingua: French
+  tratti:
+  - cortese
+  - spirituale
+Galizia:
+  lingua: Spanish
+  tratti:
+  - tenace
+  - spirituale
+Galles:
+  lingua: Welsh
+  tratti:
+  - militare
+  - antica
+Genova:
+  lingua: Italian
+  tratti:
+  - meticcio
+  - intraprendente
+Germania:
+  lingua: German
+  tratti:
+  - laboriosa
+  - tenace
+Inghilterra:
+  lingua: English
+  tratti:
+  - laboriosa
+  - rurale
+Italia:
+  lingua: Italian
+  tratti:
+  - laboriosa
+  - intraprendente
+Milano:
+  lingua: Italian
+  tratti:
+  - urbana
+  - laboriosa
+Normandia:
+  lingua: French
+  tratti:
+  - guerresca
+  - intraprendente
+Occitania:
+  lingua: Occitan
+  tratti:
+  - urbana
+  - cortese
+Padova:
+  lingua: Italian
+  tratti:
+  - erudita
+  - laboriosa
+Palermo:
+  lingua: Italian
+  tratti:
+  - meticcio
+  - urbana
+Parigi:
+  lingua: French
+  tratti:
+  - erudita
+  - spirituale
+Pisa:
+  lingua: Italian
+  tratti:
+  - intraprendente
+  - tenace
+Polonia:
+  lingua: Slavonic
+  tratti:
+  - tenace
+  - rurale
+Scandinavia:
+  lingua: Norse
+  tratti:
+  - guerresca
+  - tenace
+Scozia:
+  lingua: Gaelic
+  tratti:
+  - guerresca
+  - antica
+Svizzera:
+  lingua: German
+  tratti:
+  - militare
+  - rurale
+Vasconia:
+  lingua: Basque
+  tratti:
+  - antica
+  - rurale
+Venezia:
+  lingua: Italian
+  tratti:
+  - urbana
+  - intraprendente
