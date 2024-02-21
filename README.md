@@ -45,9 +45,7 @@ Nuove funzionalità o miglioramenti e feature mancanti per il generatore di pers
  - Gestire l'equipaggiamento in funzione dell'epoca
  - Gestire l'avanzamento (e talenti e ordini)
  - Armonizzare la generazione dei nomi con quella del personaggio (soprattutto dal punto di vista della professione)
- - Generare i tratti in funzione del luogo d'origine
  - Generare gli eventi in funzione della professione
- - Estrarre le professioni in modo che gli utenti possano customizzarle (attraverso YAML?); forse lo stesso anche per i luoghi, definendo per ciascuno lingue e tratti
 
 #### Supporto bot/hosting/etc.
 Funzionalità necessarie per consentire l'hosting del bot ed il suo corretto funzionamento
