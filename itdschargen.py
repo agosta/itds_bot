@@ -1084,7 +1084,7 @@ def sinput(nome, lis):
       if pos>=0 and pos<len(lis) : r=lis[pos]
     except Exception: pass
     if r not in lis : r = None
-  return r.lowercase()
+  return r.lower()
 
 def cinput(nome, ecls):    
   return sinput(nome, [m.name for m in ecls])
