@@ -138,7 +138,7 @@ def e_talento(self):
 
 data = {
 
-'lingue' : [ 'Arabo', 'Castigliano', 'Catalano', 'Cimrico', 'Ebraico', 'Francese', 'Frisone', 'Gaelico', 'Gallego', 'Greco', 'Inglese', 'Ladino', 'Latino', 'Portoghese', 'Provenzale', 'Scandinavo', 'Slavo', 'Tedesco', 'Turco', 'Italiano', 'Greco antico', 'Aramaico', 'Ungherese' ],
+'lingue' : [ 'Arabo', 'Castigliano', 'Catalano', 'Cimrico', 'Ebraico', 'Francese', 'Frisone', 'Gaelico', 'Gallego', 'Greco', 'Inglese', 'Ladino', 'Latino', 'Portoghese', 'Provenzale', 'Scandinavo', 'Slavo', 'Tedesco', 'Turco', 'Italiano', 'Greco antico', 'Aramaico', 'Ungherese', 'Basco' ],
 
 'valori' : {
  'fede' : [ 'fides', 'impietas'],
@@ -384,8 +384,9 @@ lingue_to_ita = {
 'Greek'   : 'Greco',
 'Spanish' : 'Castigliano',
 'Portuguese':'Portoghese',
-'Norse'   : 'Norreno',
+'Norse'   : 'Scandinavo',
 'Hungarian':'Ungherese',
+'Basque'  : 'Basco',
 } 
 
 
@@ -578,16 +579,17 @@ def cinput(nome, ecls):
 
 def ainput(nome, ecls, pers=None, remaining=1):
   global random_gen
-  if random_gen and remaining>2:
+  if random_gen and remaining>1:
      ab = list(professioni[pers.ceto][pers.mestiere]['abilità'])
      sab= list([ p['abilità'] for p in professioni[pers.ceto][pers.mestiere]['abilità_speciali']])
      try :
-       l1=[ a for a in ab if (a not in pers.abilità or not pers.abilità[a]) ]
-       l2=[ a for a in sab if (a not in pers.abilità or not pers.abilità[a]) ]
-       l=l1+l2
-       if len(l1) or (not len(pers.professione) and not len(pers.artigiano)):
+       l1=[ a for a in ab if (a not in pers.abilità or pers.abilità[a].grado==0) ]
+       l2=[ a for a in sab ]
+       l=l1 + (l2 if not len(pers.professione) and not len(pers.artigiano) else [])
+       if len(l):
          return choice(l)
-     except Exception:
+     except Exception as e:
+       print("Tentativo di scegliere una abilità professionale fallito", e)
        pass
   return sinput(nome, [m.name for m in ecls])
 
@@ -871,7 +873,7 @@ def creazione(random=False):
   from equip import TipoOggetto
   for categoria in TipoOggetto:
     oggetti = [ o for o in data['oggetti'] if data['oggetti'][o].categoria==categoria ]
-    if categoria not in [ 'armi', 'armature'] and len(oggetti) and sinput("acquistare altri oggetti? ", ["sì", "no"])=='sì':
+    if categoria not in [ 'armi', 'armature'] and len(oggetti) and sinput(f"acquistare oggetti dalla categoria {categoria}? ", ["sì", "no"])=='sì':
       while True:
         oggetto = sinput('oggetto', oggetti)
         if data['oggetti'][oggetto]['costo']<p.denaro :

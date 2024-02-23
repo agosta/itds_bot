@@ -51,7 +51,7 @@ def fill(p):
    "Protezione Armatura" : str(p.armatura.protezione),
    "Robustezza Armatura" : str(p.armatura.protezione*10),
    "Note Armatura 1": ', '.join(p.armatura.pregi),
-   "Peso totale trasportato" : str(p.armatura.peso + sum([ a.peso for a in p.armi])),
+   "Peso totale trasportato" : str(p.armatura.peso + sum([ a.peso for a in p.armi]) + sum([o.peso for o in p.equipaggiamento])),
   }
   fields[denaro[0]], fields[denaro[1]], fields[denaro[2]] = denaro_split(p.denaro)
 
@@ -60,6 +60,16 @@ def fill(p):
   for t in tratti:
     fields[f"Tratti {i}"]=t
     i+=1
+
+  i=1
+  lato='S'
+  for a in p.equipaggiamento:
+    fields[f'Equipaggiamento {i}{lato}']=f'{a.nome} {"("+a.qualità+")" if a.qualità!="normale" else ""}'
+    fields[f'Pequip{lato}{i}']=a.peso
+    i=i+1
+    if i>15 : 
+      i-=15
+      lato='D'
 
   i=1
   for a in p.armi:
