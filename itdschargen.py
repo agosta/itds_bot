@@ -74,7 +74,7 @@ def e_antico(self):
 
 def e_apprendistato(self):
   scelte = list(self.artigiano.keys())+list(self.professione.keys())
-  if not len(scelte): raise Exception("Apprendistato richiede di conoscere almeno una abilità artigiano o professione")
+  if not len(scelte): raise ITDSException("Apprendistato richiede di conoscere almeno una abilità artigiano o professione")
   if len(scelte)==1:
     if scelte[0] in self.artigiano : self.artigiano[scelte[0]].dado_extra+=2
     else : self.professione[scelte[0]].dado_extra+=2
@@ -363,497 +363,12 @@ data = {
  'talento naturale' : e_talento,
 },
 
-'armature': {
-  'abiti normali' : {
-    'nome' : 'abiti normali', 
-    'costo' : 0,
-    'conio' : 'denari',
-    'peso' : 1.5, 
-    'protezione' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'abiti imbottiti' : {
-    'nome' : 'abiti imbottiti', 
-    'costo' : 24,
-    'conio' : 'denari',
-    'peso' : 2, 
-    'protezione' : 1,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'armatura da fanteria' : {
-    'nome' : 'armatura da fanteria', 
-    'costo' : 144,
-    'conio' : 'soldi',
-    'peso' : 6, 
-    'protezione' : 2,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'armatura da cavalleria' : {
-    'nome' : 'armatura da cavalleria', 
-    'costo' : 1920,
-    'conio' : "lire d'oro",
-    'peso' : 15, 
-    'protezione' : 3,
-    'qualità' : 'normale',    
-    'pregi' : [],
-  },
-},
-
-'armi' : {
-  'arco corto' : {
-    'nome' : 'arco corto', 
-    'abilità': 'archi',
-    'costo' : 12,
-    'conio' : 'denari',
-    'peso' : 1,
-    'danno': 2,
-    'tipo': 'P',
-    'parata' : 1,
-    'misura' : 'N/A',
-    'gittata' : 30,
-    'ricarica' : 1,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'arco lungo' : {
-    'nome' : 'arco lungo', 
-    'abilità': 'archi',
-    'costo' : 24,
-    'conio' : 'denari',
-    'peso' : 1.5,
-    'danno': 2,
-    'tipo': 'P',
-    'parata' : 2,
-    'misura' : 'N/A',
-    'gittata' : 30,
-    'ricarica' : 1,
-    'qualità' : 'normale',
-    'pregi' : ['pesante'],
-  },
-  'balestra leggera' : {
-    'nome' : 'balestra leggera', 
-    'abilità': 'balestre',
-    'costo' : 36,
-    'conio' : 'soldi',
-    'peso' : 3,
-    'danno': 3,
-    'tipo': 'P',
-    'parata' : 0,
-    'misura' : 'N/A',
-    'gittata' : 20,
-    'ricarica' : 2,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'balestra a staffa' : {
-    'nome' : 'balestra a staffa', 
-    'abilità': 'balestre',
-    'costo' : 72,
-    'conio' : 'soldi',
-    'peso' : 4,
-    'danno': 4,
-    'tipo': 'P',
-    'parata' : 1,
-    'misura' : 'N/A',
-    'gittata' : 20,
-    'ricarica' : 4,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'balestra a verricello' : {
-    'nome' : 'balestra a verricello', 
-    'abilità': 'balestre',
-    'costo' : 120,
-    'conio' : 'soldi',
-    'peso' : 6,
-    'danno': 6,
-    'tipo': 'P',
-    'parata' : 2,
-    'misura' : 'N/A',
-    'gittata' : 20,
-    'ricarica' : 6,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'accetta' : {
-    'nome' : 'accetta', 
-    'abilità': 'armi corte',
-    'costo' : 3,
-    'conio' : 'denari',
-    'peso' : 1,
-    'danno': 3,
-    'tipo': 'T',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['agganciare'],
-  },
-  'bastoncello' : {
-    'nome' : 'bastoncello', 
-    'abilità': 'armi corte',
-    'costo' : 0,
-    'conio' : 'denari',
-    'peso' : 1,
-    'danno': 1,
-    'tipo': 'B',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'coltellaccio' : {
-    'nome' : 'coltellaccio', 
-    'abilità': 'armi corte',
-    'costo' : 6,
-    'conio' : 'denari',
-    'peso' : 1,
-    'danno': 2,
-    'tipo': 'T',
-    'parata' : 2,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'coltello' : {
-    'nome' : 'coltello', 
-    'abilità': 'armi corte',
-    'costo' : 2,
-    'conio' : 'denari',
-    'peso' : 0.5,
-    'danno': 1,
-    'tipo': 'T',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'bordone' : {
-    'nome' : 'bordone', 
-    'abilità': 'armi comuni',
-    'costo' : 3,
-    'conio' : 'denari',
-    'peso' : 2,
-    'danno': 2,
-    'tipo': 'B',
-    'parata' : 3,
-    'misura' : 'larga',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'falce da guerra' : {
-    'nome' : 'falce da guerra', 
-    'abilità': 'armi comuni',
-    'costo' : 12,
-    'conio' : 'denari',
-    'peso' : 6,
-    'danno': 4,
-    'tipo': 'T',
-    'parata' : 3,
-    'misura' : 'larga',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'lancia da fante' : {
-    'nome' : 'lancia da fante', 
-    'abilità': 'armi comuni',
-    'costo' : 10,
-    'conio' : 'denari',
-    'peso' : 3,
-    'danno': 4,
-    'tipo': 'T',
-    'parata' : 3,
-    'misura' : 'larga',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'martello' : {
-    'nome' : 'martello', 
-    'abilità': 'armi comuni',
-    'costo' : 6,
-    'conio' : 'denari',
-    'peso' : 2,
-    'danno': 2,
-    'tipo': 'B',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['compatta'],
-  },
-  'randello' : {
-    'nome' : 'randello', 
-    'abilità': 'armi comuni',
-    'costo' : 2,
-    'conio' : 'denari',
-    'peso' : 2,
-    'danno': 2,
-    'tipo': 'B',
-    'parata' : 1,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante'],
-  },
-  'roncone' : {
-    'nome' : 'roncone', 
-    'abilità': 'armi comuni',
-    'costo' : 12,
-    'conio' : 'denari',
-    'peso' : 5,
-    'danno': 4,
-    'tipo': 'P',
-    'parata' : 2,
-    'misura' : 'larga',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['agganciare'],
-  },
-  'scure' : {
-    'nome' : 'scure', 
-    'abilità': 'armi comuni',
-    'costo' : 8,
-    'conio' : 'denari',
-    'peso' : 4,
-    'danno': 5,
-    'tipo': 'T',
-    'parata' : 2,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['agganciare'],
-  },
-  'spiedo' : {
-    'nome' : 'spiedo', 
-    'abilità': 'armi comuni',
-    'costo' : 10,
-    'conio' : 'denari',
-    'peso' : 2,
-    'danno': 3,
-    'tipo': 'P',
-    'parata' : 2,
-    'misura' : 'media',
-    'gittata' : 10,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['da lancio'],
-  },
-  'ascia normanna' : {
-    'nome' : 'ascia normanna', 
-    'abilità': 'armi da guerra',
-    'costo' : 96,
-    'conio' : 'soldi',
-    'peso' : 2,
-    'danno': 4,
-    'tipo': 'T',
-    'parata' : 2,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante','agganciare'],
-  },
-  'brocchiere' : {
-    'nome' : 'brocchiere', 
-    'abilità': 'armi da guerra',
-    'costo' : 12,
-    'conio' : 'soldi',
-    'peso' : 1,
-    'danno': 1,
-    'tipo': 'B',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'lancia da cavaliere' : {
-    'nome' : 'lancia da cavaliere', 
-    'abilità': 'armi da guerra',
-    'costo' : 24,
-    'conio' : 'soldi',
-    'peso' : 4,
-    'danno': 5,
-    'tipo': 'P',
-    'parata' : 1,
-    'misura' : 'larghissima',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante','da cavallo'],
-  },
-  'mannaia inastata' : {
-    'nome' : 'mannaia inastata', 
-    'abilità': 'armi da guerra',
-    'costo' : 24,
-    'conio' : 'soldi',
-    'peso' : 5,
-    'danno': 6,
-    'tipo': 'T',
-    'parata' : 3,
-    'misura' : 'larga',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante'],
-  },
-  'mazza ferrata' : {
-    'nome' : 'mazza ferrata', 
-    'abilità': 'armi da guerra',
-    'costo' : 120,
-    'conio' : 'soldi',
-    'peso' : 2,
-    'danno': 3,
-    'tipo': 'B',
-    'parata' : 1,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'picca' : {
-    'nome' : 'picca', 
-    'abilità': 'armi da guerra',
-    'costo' : 36,
-    'conio' : 'soldi',
-    'peso' : 4,
-    'danno': 4,
-    'tipo': 'P',
-    'parata' : 4,
-    'misura' : 'larghissima',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante'],
-  },
-  'pugnale' : {
-    'nome' : 'pugnale', 
-    'abilità': 'armi da guerra',
-    'costo' : 12,
-    'conio' : 'soldi',
-    'peso' : 0.5,
-    'danno': 2,
-    'tipo': 'P',
-    'parata' : 1,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'scudo' : {
-    'nome' : 'scudo', 
-    'abilità': 'armi da guerra',
-    'costo' : 12,
-    'conio' : 'soldi',
-    'peso' : 3,
-    'danno': 2,
-    'tipo': 'B',
-    'parata' : 2,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-  'scudo grande' : {
-    'nome' : 'scudo grande', 
-    'abilità': 'armi da guerra',
-    'costo' : 24,
-    'conio' : 'soldi',
-    'peso' : 5,
-    'danno': 2,
-    'tipo': 'B',
-    'parata' : 3,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['pesante','copertura'],
-  },
-  'spada da guerra' : {
-    'nome' : 'spada da guerra', 
-    'abilità': 'armi da guerra',
-    'costo' : 480,
-    'conio' : 'soldi',
-    'peso' : 2,
-    'danno': 4,
-    'tipo': 'T',
-    'parata' : 3,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : ['versatile'],
-  },
-  "spada d'arme" : {
-    'nome' : "spada d'arme", 
-    'abilità': 'armi da guerra',
-    'costo' : 240,
-    'conio' : 'soldi',
-    'peso' : 1.5,
-    'danno': 3,
-    'tipo': 'T',
-    'parata' : 3,
-    'misura' : 'media',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-},
-
-'equipaggiamento' : {
-  'attrezzi da scalatore' : {
-    'tipo' : 'attrezzature delle abilità',
-    'abilità' : ['atletica', 'agilità', 'forza'],
-    'qualità' : 'normale',
-    'costo' : 36,
-    'conio' : 'soldi',
-    'peso' : 3,
-  }, 
-},
 }
 
-""" Template armi
-  '' : {
-    'nome' : '',
-    'abilità': 'balestre',
-    'costo' : 0,
-    'conio': 'denari',
-    'peso' : 0,
-    'danno': 0,
-    'tipo': 'T',
-    'parata' : 0,
-    'misura' : 'stretta',
-    'gittata' : 0,
-    'ricarica' : 0,
-    'qualità' : 'normale',
-    'pregi' : [],
-  },
-"""
+from equip import equip, Arma, Armatura, Oggetto
+data['armi'] = equip.armi
+data['armature'] = equip.armature
+data['oggetti'] = equip.oggetti
 
 lingue_to_ita = {
 'Italian' : 'Italiano',
@@ -960,35 +475,6 @@ class AbilitàSpeciale:
 
 @dataclass_json
 @dataclass
-class Arma:
-  nome   : str = ''
-  abilità: str = 'armi comuni'
-  costo  : int = 0
-  conio  : str = 'denari'
-  peso   : int = 0
-  danno  : int = 0
-  tipo   : str = 'T'
-  parata : int = 0
-  misura : str = 'stretta'
-  gittata: int = 0
-  ricarica: int= 0
-  qualità: str = 'normale'
-  pregi  : list[str] = field(default_factory=list)
-
-@dataclass_json
-@dataclass
-class Armatura:
-  nome   : str = ''
-  costo  : int = 0
-  conio  : str = 'denari'
-  peso   : int = 0
-  protezione : int = 0
-  qualità: str = 'normale'
-  pregi  : list[str] = field(default_factory=list)
-
-
-@dataclass_json
-@dataclass
 class Personaggio:
   nome       : str = ''
   luogo_nascita : str = ''
@@ -1019,6 +505,7 @@ class Personaggio:
   eventi     : list[str] = field(default_factory=list)
   armi       : List[Arma] = field(default_factory=list)
   armatura   : Armatura = field(default_factory=lambda: Armatura(data['armature']['abiti normali']))
+  equipaggiamento : List[Oggetto] = field(default_factory=list)
 
   def mod(self,c):
     return self.caratteristiche[c].modificatore
@@ -1073,7 +560,7 @@ class Personaggio:
 # GESTIONE INPUT O GENERAZIONE CASUALE
 def sinput(nome, lis):
   global random_gen
-  if not len(lis): raise Exception(f"{nome} non può essere scelto, perché non ci sono opzioni disponibili")
+  if not len(lis): raise ITDSException(f"{nome} non può essere scelto, perché non ci sono opzioni disponibili")
   if random_gen : return choice(lis)
   r = None
   s = [ f'({lis.index(l)+1}) {l}' for l in lis ]
@@ -1136,7 +623,15 @@ def input_abilità_speciale(tipo, pers, mestiere=False):
   global random_gen
   if random_gen : 
     l = [ e for e in professioni[pers.ceto][pers.mestiere]['abilità_speciali'] if e['abilità']==tipo ]
-    try : return choice(l)
+    try : 
+      c = choice(l)
+      sottotipo=None
+      if c['abilità'] == 'artigiano' :
+        for d in data['abilità speciali']['artigiano'] :
+          if c['specialità'] in data['abilità speciali']['artigiano'][d]: sottotipo=d
+      else :
+        sottotipo=c['abilità'].split('/')[-1]
+      return AbilitàSpeciale(nome=c['specialità'],caratteristica=sottotipo, grado=1, mestiere=mestiere)
     except Exception : pass    
   #print(tipo, mestiere)
   if tipo == 'artigiano':
@@ -1177,6 +672,8 @@ def input_cultura(pers):
       if cultura2!=cultura1 : break
     return cultura1, cultura2
 
+class ITDSException(Exception):
+  pass
 
 # CREAZIONE DEL PERSONAGGIO
 def creazione(random=False):
@@ -1237,7 +734,7 @@ def creazione(random=False):
   p.retaggio-=data['ceto'][ceto]['retaggio']
   p.fama+=data['ceto'][ceto]['retaggio']
   p.denaro = calcolo_denaro(data['ceto'][ceto]['denaro iniziale'][0])
-  if p.retaggio<0: raise Exception("Personaggi con modificatore di gratia negativo non possono essere nobili!") # questa eccezione non dovrebbe mai verificarsi 
+  if p.retaggio<0: raise ITDSException("Personaggi con modificatore di gratia negativo non possono essere nobili!") # questa eccezione non dovrebbe mai verificarsi 
   mestiere = input_mestiere(p) # al momento il mestiere è solo una stringa di testo senza particolare significato
   p.mestiere=mestiere
   #print(p.mestiere)
@@ -1260,12 +757,13 @@ def creazione(random=False):
       if ab == 'artigiano' :
         abd=None
         while not abd or abd.nome in p.artigiano:
-          abd=input_abilità_speciale(ab, mestiere=True)
+          abd=input_abilità_speciale(ab, p, mestiere=True)
         p.artigiano[abd.nome]=abd
       elif 'professione' in ab : 
         abd=None
         while not abd or abd.nome in p.professione:
-          abd=input_abilità_speciale(ab, mestiere=True)
+          abd=input_abilità_speciale(ab, p, mestiere=True)
+          print(abd)
           print(abd.nome)
         p.professione[abd.nome]=abd
       else :
@@ -1288,10 +786,10 @@ def creazione(random=False):
     d+=1 # costo =1 + distanza
     if p_libere-d>=0:
       if ab == 'artigiano' :
-        ab=input_abilità_speciale(ab)
+        ab=input_abilità_speciale(ab,p)
         ab=p.artigiano[ab.nome]=ab
       elif 'professione' in ab : 
-        ab=input_abilità_speciale(ab)
+        ab=input_abilità_speciale(ab,p)
         p.professione[ab.nome]=ab
       else :
         p.abilità[ab].grado+=1
@@ -1356,14 +854,14 @@ def creazione(random=False):
     armatura = sinput('armatura', list(data['armature'].keys()))
     if data['armature'][armatura]['costo']<p.denaro :
       p.denaro -= data['armature'][armatura]['costo']
-      p.armatura = Armatura(**data['armature'][armatura])
+      p.armatura = data['armature'][armatura]
       break
   larmi=[]
   while len(p.armi)<5:
     arma = sinput('arma', list(data['armi'].keys()))
     if data['armi'][arma]['costo']<p.denaro :
       p.denaro -= data['armi'][arma]['costo']
-      larmi.append(Arma(**data['armi'][arma]))
+      larmi.append(data['armi'][arma])
     if sinput("acquistare altre armi? ", ["sì", "no"])=='no':
       break
   p.armi=larmi
@@ -1393,7 +891,7 @@ if __name__=='__main__':
       c = creazione(random=random)
       with open('./json/'+c.nome+'.json',"w") as fout:
         fout.write(tojson(c))
-    except Exception as e:
+    except ITDSException as e:
       print(e)
   print(c)
   print(c.nome)

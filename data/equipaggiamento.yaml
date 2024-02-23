@@ -1,0 +1,969 @@
+armature:
+  abiti imbottiti:
+    conio: denari
+    costo: 24
+    nome: abiti imbottiti
+    peso: 2
+    pregi: []
+    protezione: 1
+    qualità: normale
+  abiti normali:
+    conio: denari
+    costo: 0
+    nome: abiti normali
+    peso: 1.5
+    pregi: []
+    protezione: 0
+    qualità: normale
+  armatura da cavalleria:
+    conio: lire
+    costo: 1920
+    nome: armatura da cavalleria
+    peso: 15
+    pregi: []
+    protezione: 3
+    qualità: normale
+  armatura da fanteria:
+    conio: soldi
+    costo: 144
+    nome: armatura da fanteria
+    peso: 6
+    pregi: []
+    protezione: 2
+    qualità: normale
+armi:
+  accetta:
+    abilità: armi corte
+    conio: denari
+    costo: 3
+    danno: 3
+    gittata: 0
+    misura: stretta
+    nome: accetta
+    parata: 1
+    peso: 1
+    pregi:
+    - agganciare
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  arco corto:
+    abilità: archi
+    conio: denari
+    costo: 12
+    danno: 2
+    gittata: 30
+    misura: N/A
+    nome: arco corto
+    parata: 1
+    peso: 1
+    pregi: []
+    qualità: normale
+    ricarica: 1
+    tipo: P
+  arco lungo:
+    abilità: archi
+    conio: denari
+    costo: 24
+    danno: 2
+    gittata: 30
+    misura: N/A
+    nome: arco lungo
+    parata: 2
+    peso: 1.5
+    pregi:
+    - pesante
+    qualità: normale
+    ricarica: 1
+    tipo: P
+  ascia normanna:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 96
+    danno: 4
+    gittata: 0
+    misura: media
+    nome: ascia normanna
+    parata: 2
+    peso: 2
+    pregi:
+    - pesante
+    - agganciare
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  balestra a staffa:
+    abilità: balestre
+    conio: soldi
+    costo: 72
+    danno: 4
+    gittata: 20
+    misura: N/A
+    nome: balestra a staffa
+    parata: 1
+    peso: 4
+    pregi: []
+    qualità: normale
+    ricarica: 4
+    tipo: P
+  balestra a verricello:
+    abilità: balestre
+    conio: soldi
+    costo: 120
+    danno: 6
+    gittata: 20
+    misura: N/A
+    nome: balestra a verricello
+    parata: 2
+    peso: 6
+    pregi: []
+    qualità: normale
+    ricarica: 6
+    tipo: P
+  balestra leggera:
+    abilità: balestre
+    conio: soldi
+    costo: 36
+    danno: 3
+    gittata: 20
+    misura: N/A
+    nome: balestra leggera
+    parata: 0
+    peso: 3
+    pregi: []
+    qualità: normale
+    ricarica: 2
+    tipo: P
+  bastoncello:
+    abilità: armi corte
+    conio: denari
+    costo: 0
+    danno: 1
+    gittata: 0
+    misura: stretta
+    nome: bastoncello
+    parata: 1
+    peso: 1
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  bordone:
+    abilità: armi comuni
+    conio: denari
+    costo: 3
+    danno: 2
+    gittata: 0
+    misura: larga
+    nome: bordone
+    parata: 3
+    peso: 2
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  brocchiere:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 12
+    danno: 1
+    gittata: 0
+    misura: stretta
+    nome: brocchiere
+    parata: 1
+    peso: 1
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  coltellaccio:
+    abilità: armi corte
+    conio: denari
+    costo: 6
+    danno: 2
+    gittata: 0
+    misura: media
+    nome: coltellaccio
+    parata: 2
+    peso: 1
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  coltello:
+    abilità: armi corte
+    conio: denari
+    costo: 2
+    danno: 1
+    gittata: 0
+    misura: stretta
+    nome: coltello
+    parata: 1
+    peso: 0.5
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  falce da guerra:
+    abilità: armi comuni
+    conio: denari
+    costo: 12
+    danno: 4
+    gittata: 0
+    misura: larga
+    nome: falce da guerra
+    parata: 3
+    peso: 6
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  lancia da cavaliere:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 24
+    danno: 5
+    gittata: 0
+    misura: larghissima
+    nome: lancia da cavaliere
+    parata: 1
+    peso: 4
+    pregi:
+    - pesante
+    - da cavallo
+    qualità: normale
+    ricarica: 0
+    tipo: P
+  lancia da fante:
+    abilità: armi comuni
+    conio: denari
+    costo: 10
+    danno: 4
+    gittata: 0
+    misura: larga
+    nome: lancia da fante
+    parata: 3
+    peso: 3
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  mannaia inastata:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 24
+    danno: 6
+    gittata: 0
+    misura: larga
+    nome: mannaia inastata
+    parata: 3
+    peso: 5
+    pregi:
+    - pesante
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  martello:
+    abilità: armi comuni
+    conio: denari
+    costo: 6
+    danno: 2
+    gittata: 0
+    misura: stretta
+    nome: martello
+    parata: 1
+    peso: 2
+    pregi:
+    - compatta
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  mazza ferrata:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 120
+    danno: 3
+    gittata: 0
+    misura: media
+    nome: mazza ferrata
+    parata: 1
+    peso: 2
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  picca:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 36
+    danno: 4
+    gittata: 0
+    misura: larghissima
+    nome: picca
+    parata: 4
+    peso: 4
+    pregi:
+    - pesante
+    qualità: normale
+    ricarica: 0
+    tipo: P
+  pugnale:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 12
+    danno: 2
+    gittata: 0
+    misura: stretta
+    nome: pugnale
+    parata: 1
+    peso: 0.5
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: P
+  randello:
+    abilità: armi comuni
+    conio: denari
+    costo: 2
+    danno: 2
+    gittata: 0
+    misura: media
+    nome: randello
+    parata: 1
+    peso: 2
+    pregi:
+    - pesante
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  roncone:
+    abilità: armi comuni
+    conio: denari
+    costo: 12
+    danno: 4
+    gittata: 0
+    misura: larga
+    nome: roncone
+    parata: 2
+    peso: 5
+    pregi:
+    - agganciare
+    qualità: normale
+    ricarica: 0
+    tipo: P
+  scudo:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 12
+    danno: 2
+    gittata: 0
+    misura: stretta
+    nome: scudo
+    parata: 2
+    peso: 3
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  scudo grande:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 24
+    danno: 2
+    gittata: 0
+    misura: stretta
+    nome: scudo grande
+    parata: 3
+    peso: 5
+    pregi:
+    - pesante
+    - copertura
+    qualità: normale
+    ricarica: 0
+    tipo: B
+  scure:
+    abilità: armi comuni
+    conio: denari
+    costo: 8
+    danno: 5
+    gittata: 0
+    misura: media
+    nome: scure
+    parata: 2
+    peso: 4
+    pregi:
+    - agganciare
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  spada d'arme:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 240
+    danno: 3
+    gittata: 0
+    misura: media
+    nome: spada d'arme
+    parata: 3
+    peso: 1.5
+    pregi: []
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  spada da guerra:
+    abilità: armi da guerra
+    conio: soldi
+    costo: 480
+    danno: 4
+    gittata: 0
+    misura: media
+    nome: spada da guerra
+    parata: 3
+    peso: 2
+    pregi:
+    - versatile
+    qualità: normale
+    ricarica: 0
+    tipo: T
+  spiedo:
+    abilità: armi comuni
+    conio: denari
+    costo: 10
+    danno: 3
+    gittata: 10
+    misura: media
+    nome: spiedo
+    parata: 2
+    peso: 2
+    pregi:
+    - da lancio
+    qualità: normale
+    ricarica: 0
+    tipo: P
+oggetti:
+  acciarino e pietra focaia:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 6
+    peso: 0
+    pregi: []
+    qualità: normale
+  acido:
+    categoria: composti
+    conio: soldi
+    costo: 120
+    pregi: []
+    qualità: normale
+  aconito:
+    categoria: composti
+    conio: soldi
+    costo: 480
+    pregi: []
+    qualità: normale
+  amuleti:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 120
+    peso: 0
+    pregi: []
+    qualità: normale
+  antidoto:
+    categoria: composti
+    conio: soldi
+    costo: 12
+    pregi: []
+    qualità: normale
+  arnesi da scasso:
+    abilità:
+    - manualità
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 24
+    peso: 3
+    pregi: []
+    qualità: normale
+  arsenico:
+    categoria: composti
+    conio: soldi
+    costo: 240
+    pregi: []
+    qualità: normale
+  asino:
+    carico: 100
+    categoria: animali
+    conio: soldi
+    costo: 120
+    movimento: 7
+    pregi: []
+    qualità: normale
+  attrezzi da cucina:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 12
+    peso: 1
+    pregi: []
+    qualità: normale
+  attrezzi da scalatore:
+    abilità:
+    - atletica
+    - agilità
+    - forza
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 36
+    peso: 3
+    pregi: []
+    qualità: normale
+  balsamo:
+    categoria: composti
+    conio: soldi
+    costo: 36
+    pregi: []
+    qualità: normale
+  bilancia e pesi:
+    abilità:
+    - mercatura
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 144
+    peso: 2
+    pregi: []
+    qualità: normale
+  bussola:
+    abilità:
+    - sopravvivenza
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 0
+    pregi: []
+    qualità: normale
+  candela:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 1
+    peso: 0
+    pregi: []
+    qualità: normale
+  cantarella:
+    categoria: composti
+    conio: soldi
+    costo: 480
+    pregi: []
+    qualità: normale
+  cavallo da tiro:
+    carico: 120
+    categoria: animali
+    conio: soldi
+    costo: 240
+    movimento: 7
+    pregi: []
+    qualità: normale
+  ceppi:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 12
+    peso: 1
+    pregi: []
+    qualità: normale
+  clessidra:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 24
+    peso: 0.5
+    pregi: []
+    qualità: normale
+  completo da contadino:
+    categoria: vesti
+    ceto: popolani
+    conio: denari
+    costo: 8
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da cortigiano:
+    categoria: vesti
+    ceto: borghesi
+    conio: soldi
+    costo: 72
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da ecclesiastico:
+    categoria: vesti
+    ceto: borghesi
+    conio: soldi
+    costo: 120
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da intrattenitore:
+    categoria: vesti
+    ceto: borghesi
+    conio: soldi
+    costo: 12
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da miserabile:
+    categoria: vesti
+    ceto: umili
+    conio: denari
+    costo: 4
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da notabile:
+    categoria: vesti
+    ceto: borghesi
+    conio: soldi
+    costo: 120
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da pellegrino:
+    categoria: vesti
+    ceto: popolani
+    conio: denari
+    costo: 10
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da popolano:
+    categoria: vesti
+    ceto: popolani
+    conio: denari
+    costo: 12
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da servitore:
+    categoria: vesti
+    ceto: umili
+    conio: denari
+    costo: 8
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo da viaggiatore:
+    categoria: vesti
+    ceto: borghesi
+    conio: soldi
+    costo: 48
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  completo nobiliare:
+    categoria: vesti
+    ceto: nobili
+    conio: lire
+    costo: 720
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  coperta da notte:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 6
+    peso: 1.5
+    pregi: []
+    qualità: normale
+  corda e rampino:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 60
+    peso: 4
+    pregi: []
+    qualità: normale
+  dadi, carte e giochi d'azzardo:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 4
+    peso: 0
+    pregi: []
+    qualità: normale
+  destriero:
+    carico: 100
+    categoria: animali
+    conio: lire
+    costo: 2400
+    movimento: 8
+    pregi: []
+    qualità: normale
+  digitale:
+    categoria: composti
+    conio: soldi
+    costo: 480
+    pregi: []
+    qualità: normale
+  falco:
+    carico: 0
+    categoria: animali
+    conio: lire
+    costo: 480
+    movimento: 20
+    pregi: []
+    qualità: normale
+  fasciature e bende:
+    abilità:
+    - guarigione
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 12
+    peso: 1
+    pregi: []
+    qualità: normale
+  fiasca d'olio (mezzo litro):
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 4
+    peso: 0.5
+    pregi: []
+    qualità: normale
+  fuoco greco:
+    categoria: composti
+    conio: lire
+    costo: 240
+    pregi: []
+    qualità: normale
+  inchiostro simpatico:
+    categoria: composti
+    conio: soldi
+    costo: 12
+    pregi: []
+    qualità: normale
+  infuso per il vigore:
+    categoria: composti
+    conio: soldi
+    costo: 36
+    pregi: []
+    qualità: normale
+  infuso per la concentrazione:
+    categoria: composti
+    conio: soldi
+    costo: 36
+    pregi: []
+    qualità: normale
+  infuso per la possanza:
+    categoria: composti
+    conio: soldi
+    costo: 36
+    pregi: []
+    qualità: normale
+  infuso per la rapidità:
+    categoria: composti
+    conio: soldi
+    costo: 36
+    pregi: []
+    qualità: normale
+  lanterna:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 12
+    peso: 1
+    pregi: []
+    qualità: normale
+  lente di ingrandimento:
+    abilità:
+    - mercatura
+    - ragionamento
+    - arti liberali
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 0
+    pregi: []
+    qualità: normale
+  libro:
+    abilità:
+    - arti liberali
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 1
+    pregi: []
+    qualità: normale
+  mappa o portolano:
+    abilità:
+    - usi e costumi
+    - sopravvivenza
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 1
+    pregi: []
+    qualità: normale
+  mastino:
+    carico: 0
+    categoria: animali
+    conio: denari
+    costo: 20
+    movimento: 7
+    pregi: []
+    qualità: normale
+  mulo:
+    carico: 120
+    categoria: animali
+    conio: soldi
+    costo: 240
+    movimento: 7
+    pregi: []
+    qualità: normale
+  narcotico:
+    categoria: composti
+    conio: soldi
+    costo: 240
+    pregi: []
+    qualità: normale
+  palafreno:
+    carico: 85
+    categoria: animali
+    conio: lire
+    costo: 1200
+    movimento: 10
+    pregi: []
+    qualità: normale
+  piede di porco:
+    abilità:
+    - atletica
+    - forza
+    categoria: attrezzature delle abilità
+    conio: denari
+    costo: 4
+    peso: 2
+    pregi: []
+    qualità: normale
+  posate e tazza:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 4
+    peso: 1
+    pregi: []
+    qualità: normale
+  provviste da viaggio:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 1
+    peso: 1
+    pregi: []
+    qualità: normale
+  ronzino:
+    carico: 85
+    categoria: animali
+    conio: soldi
+    costo: 120
+    movimento: 7
+    pregi: []
+    qualità: normale
+  sapone:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 6
+    peso: 0.5
+    pregi: []
+    qualità: normale
+  segugio:
+    carico: 0
+    categoria: animali
+    conio: soldi
+    costo: 72
+    movimento: 7
+    pregi: []
+    qualità: normale
+  strumenti chirurgici:
+    abilità:
+    - guarigione
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 2
+    pregi: []
+    qualità: normale
+  strumenti da scrittura:
+    abilità:
+    - arti liberali
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 480
+    peso: 2
+    pregi: []
+    qualità: normale
+  strumenti nautici:
+    abilità:
+    - sopravvivenza
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 2
+    pregi: []
+    qualità: normale
+  strumenti professionali:
+    abilità: []
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 2
+    pregi: []
+    qualità: normale
+  strumento musicale:
+    abilità:
+    - intrattenere
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 60
+    peso: 1
+    pregi: []
+    qualità: normale
+  tenda:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 10
+    peso: 10
+    pregi: []
+    qualità: normale
+  tinture e trucchi:
+    abilità:
+    - intrattenere
+    - raggirare
+    categoria: attrezzature delle abilità
+    conio: soldi
+    costo: 48
+    peso: 1
+    pregi: []
+    qualità: normale
+  tirapugni:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 60
+    peso: 0
+    pregi: []
+    qualità: normale
+  tonico:
+    categoria: composti
+    conio: soldi
+    costo: 24
+    pregi: []
+    qualità: normale
+  torcia:
+    categoria: attrezzature da viaggio
+    conio: denari
+    costo: 1
+    peso: 0.5
+    pregi: []
+    qualità: normale
+  trappole da caccia e pesca:
+    abilità:
+    - sopravvivenza
+    categoria: attrezzature delle abilità
+    conio: lire
+    costo: 240
+    peso: 2
+    pregi: []
+    qualità: normale
+  triboli:
+    categoria: attrezzature da viaggio
+    conio: soldi
+    costo: 12
+    peso: 1
+    pregi: []
+    qualità: normale
