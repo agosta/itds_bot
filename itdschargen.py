@@ -865,6 +865,23 @@ def creazione(random=False):
     if sinput("acquistare altre armi? ", ["sì", "no"])=='no':
       break
   p.armi=larmi
+
+  logg = []
+  
+  from equip import TipoOggetto
+  for categoria in TipoOggetto:
+    oggetti = [ o for o in data['oggetti'] if data['oggetti'][o].categoria==categoria ]
+    if categoria not in [ 'armi', 'armature'] and len(oggetti) and sinput("acquistare altri oggetti? ", ["sì", "no"])=='sì':
+      while True:
+        oggetto = sinput('oggetto', oggetti)
+        if data['oggetti'][oggetto]['costo']<p.denaro :
+          p.denaro -= data['oggetti'][oggetto]['costo']
+          logg.append(data['oggetti'][oggetto])
+        if sinput(f"acquistare altri oggetti ({categoria})? ", ["sì", "no"])=='no':
+          break
+  p.equipaggiamento=logg
+  
+  # Personaggio completo
   return p
 
 
