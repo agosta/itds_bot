@@ -12,6 +12,8 @@ async-timeout==4.0.3
     # via aiohttp
 attrs==23.2.0
     # via aiohttp
+dataclass-wizard==0.22.3
+    # via -r requirements.in
 dataclasses-json==0.6.4
     # via -r requirements.in
 discord==2.3.2
