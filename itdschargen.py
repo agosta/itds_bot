@@ -434,9 +434,18 @@ def qualità_oggetto(o, q):
     o['costo']=o['costo']*3
     return o
 
+class CaseInsensitiveEnum(StrEnum):
+    @classmethod
+    def _missing_(cls, value):
+        value = value.lower()
+        for member in cls:
+            if member.lower() == value:
+                return member
+        return None
+
 Culture  = StrEnum('Culture', list(data['culture'].keys()))
 Ceti     = StrEnum('Ceti', list(data['ceto'].keys()))
-Lingue   = StrEnum('Lingue', data['lingue'])
+Lingue   = CaseInsensitiveEnum('Lingue', data['lingue'])
 Caratteristiche = StrEnum('Caratteristiche', list(data['caratteristiche'].keys()))
 EAbilità = StrEnum('Abilità', sum([ data['caratteristiche'][d]['abilità'] for d in data['caratteristiche']],[]))
 Tentazioni = StrEnum('Tentazioni',data['tentazioni'])
