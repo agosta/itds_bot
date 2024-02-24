@@ -11,6 +11,7 @@ from enum import Enum
 from random import choice, randint
 from strenum import StrEnum
 from string import capwords
+from equip import TipoOggetto, Qualità, Conio
 
 global random_gen
 
@@ -419,20 +420,6 @@ def penalita_ingombro(ingombro, ingombro_base):
   if ingombro<ingombro_base*8 : return -3
   return -4
 
-# OGGETTI
-#TODO creazione di oggetti di qualità superiore
-
-qualità_livelli = ['normale', 'buona', 'eccellente', 'ottima', 'straordinaria', 'scadente' ] # scadente = -1
-
-from copy import deepcopy
-
-def qualità_oggetto(o, q):
-  if q=='normale': return o
-  if q=='buona' : 
-    o=deepcopy(o)
-    o['qualità']='buona'
-    o['costo']=o['costo']*3
-    return o
 
 class CaseInsensitiveEnum(StrEnum):
     @classmethod
@@ -808,6 +795,7 @@ def creazione(random=False):
     else : 
       print(f"Abilità troppo costosa, {d} punti contro un residuo di {p_mestiere} punti")
 
+  # Calcolo dei punteggi derivati
   p.fatica_init()
   p.ferite_init()
   p.spirito_init()
@@ -825,7 +813,7 @@ def creazione(random=False):
       except Exception as e: 
         print(e)
 
-  #Addestramento
+  # Addestramento
   ab3 =  3 if 'esperienza' in p.eventi else 2
   ab2 = 10 if 'esperienza' in p.eventi else 8
   while ab3>0:
@@ -839,7 +827,7 @@ def creazione(random=False):
     p.incrementa_abilità(scelta,2)
     ab2-=1
 
-  # lingue
+  # Lingue conosciute
   n_lingue = 1 + p.mod('mens') + p.abilità['usi e costumi'].grado//2
   if p.abilità['arti liberali'].grado>=2 : p.lingue.append('Latino')
   if p.abilità['arti liberali'].grado>=4 : p.lingue.append('Greco antico')
@@ -854,7 +842,7 @@ def creazione(random=False):
         p.lingue.append(l)
         break
 
-  # focus
+  # Scelta dei focus
   for a in p.abilità :
     if p.abilità[a].mestiere and p.abilità[a].grado>=3:
       for i in range(p.abilità[a].grado//3):
@@ -863,31 +851,43 @@ def creazione(random=False):
   #TODO equipaggiamento: oggetti diversi da armi e armature, definizione della qualità degli oggetti e, nel caso di scelta casuale, impatto delle abilità di mestiere
   while True:
     armatura = sinput('armatura', list(data['armature'].keys()))
-    if data['armature'][armatura]['costo']<p.denaro :
+    q = 'buona' if 'militare' in p.cultura else cinput('qualità', Qualità)
+    armatura_obj = data['armature'][armatura].qualità_oggetto(q)
+    if 'militare' in p.cultura and data['armature'][armatura]['costo']<p.denaro: # applica il bonus della cultura militare
       p.denaro -= data['armature'][armatura]['costo']
-      p.armatura = data['armature'][armatura]
+      p.armatura= armatura_obj
+      break
+    elif armatura_obj.costo<p.denaro :
+      p.denaro -= armatura_obj.costo
+      p.armatura= armatura_obj
       break
   larmi=[]
   while len(p.armi)<5:
     arma = sinput('arma', list(data['armi'].keys()))
-    if data['armi'][arma]['costo']<p.denaro :
+    q = 'buona' if 'militare' in p.cultura else cinput('qualità', Qualità)
+    arma_obj = data['armi'][arma].qualità_oggetto(q)
+    if 'militare' in p.cultura and data['armi'][arma]['costo']<p.denaro: # applica il bonus della cultura militare
       p.denaro -= data['armi'][arma]['costo']
-      larmi.append(data['armi'][arma])
+      larmi.append(arma_obj)
+    elif arma_obj.costo<p.denaro :
+      p.denaro -= arma_obj.costo
+      larmi.append(arma_obj)
     if sinput("acquistare altre armi? ", ["sì", "no"])=='no':
       break
   p.armi=larmi
 
   logg = []
   
-  from equip import TipoOggetto
   for categoria in TipoOggetto:
     oggetti = [ o for o in data['oggetti'] if data['oggetti'][o].categoria==categoria ]
     if categoria not in [ 'armi', 'armature'] and len(oggetti) and sinput(f"acquistare oggetti dalla categoria {categoria}? ", ["sì", "no"])=='sì':
       while True:
         oggetto = sinput('oggetto', oggetti)
-        if data['oggetti'][oggetto]['costo']<p.denaro :
-          p.denaro -= data['oggetti'][oggetto]['costo']
-          logg.append(data['oggetti'][oggetto])
+        q = cinput('qualità', Qualità)
+        ogg = data['oggetti'][oggetto].qualità_oggetto(q)
+        if ogg.costo<p.denaro :
+          p.denaro -= ogg.costo
+          logg.append(ogg)
         if sinput(f"acquistare altri oggetti ({categoria})? ", ["sì", "no"])=='no':
           break
   p.equipaggiamento=logg

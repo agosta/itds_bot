@@ -47,7 +47,7 @@ def fill(p):
    "PE Liberi" : str(p.pe_liberi),
    "PE spesi" : str(p.pe_spesi),
    "Denari" : '0',
-   "Armatura 1" : p.armatura.nome,
+   "Armatura 1" : f'{p.armatura.nome} {"("+p.armatura.qualità+")" if p.armatura.qualità!="normale" else ""}',
    "Protezione Armatura" : str(p.armatura.protezione),
    "Robustezza Armatura" : str(p.armatura.protezione*10),
    "Note Armatura 1": ', '.join(p.armatura.pregi),
@@ -74,7 +74,7 @@ def fill(p):
   i=1
   for a in p.armi:
     print(a)
-    fields[f'Armi {i}']=a.nome
+    fields[f'Armi {i}']=f'{a.nome} {"("+a.qualità+")" if a.qualità!="normale" else ""}'
     fields[f'Parata{i}']=f'+{a.parata}'
     fields[f'Dannoarma{i}']=f"+{a.danno}{a.tipo}"
     fields[f'Misuraarma{i}']=f"{a.misura if a.misura!='N/A' else ''} {str(a.gittata)+'m' if a.gittata!=0 else ''}"
