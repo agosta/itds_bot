@@ -471,6 +471,9 @@ def get_surname_base(gender, language):
 
 professions = sorted(['Nobleman', 'Knight', 'Gentleman', 'Noblewoman', 'Troubador', 'Priest']+ list(surnames_by_profession.keys()))
 
+print(languages)
+print(professions)
+
 def get_surname(gender, language, profession=None):
   if profession :
     if profession == 'random' : profession = choice(professions)
@@ -487,7 +490,74 @@ def get_surname(gender, language, profession=None):
     except Exception : pass 
   return s
 
+
+ita_to_eng_lang = {
+  'Arabo'      : 'Arabic',
+  'Basco'      : 'Basque',
+  'Catalano'   : 'Catalan',
+  'Inglese'    : 'English',
+  'Francese'   : 'French',
+  'Gaelico'    : 'Gaelic',
+  'Tedesco'    : 'German',
+  'Greco'      : 'Greek',
+  'Ebraico'    : 'Hebrew',
+  'Ungherese'  : 'Hungarian',
+  'Italiano'   : 'Italian',
+  'Latino'     : 'Latin',
+  'Scandinavo' : 'Norse',
+  'Provenzale' : 'Occitan',
+  'Portoghese' : 'Portuguese',
+  'Romeno'     : 'Romanian', 
+  'Slavo'      : 'Slavonic',
+  'Castigliano': 'Spanish',
+  'Cimrico'    : 'Welsh',
+}
+
+ita_to_eng_prof = {
+  'Armaiolo'   : 'Armorer',
+  'Fabbro'     : 'Blacksmith',
+  'Arcaio'     : 'Bowyer',
+  'Birraio'    : 'Brewer',
+  'Macellaio'  : 'Butcher',
+  'Carpentiere': 'Carpenter',
+  'Ciambellano': 'Chamberlain',
+  'Formaggiaio': 'Cheesemaker',
+  'Ciabattino' : 'Cobbler',
+  'Bottaio'    : 'Cooper',
+  'Cortigiano' : 'Gentleman',
+  'Vetraio'    : 'Glassblower',
+  'Orafo'      : 'Goldsmith',
+  'Cacciatore' : 'Huntsman',
+  'Cavaliere'  : 'Knight',
+  'Bracciante' : 'Laborer',
+  'Muratore'   : 'Mason',
+  'Nobile'     : 'Nobleman',
+  'Nobildonna' : 'Noblewoman',
+  'Prete'      : 'Priest',
+  'Funzionario': 'Reeve',
+  'Marinaio'   : 'Sailor',
+  'Copista'    : 'Scribe',
+  'Servo'      : 'Servant',
+  'Arciere'    : 'Shortbowman',
+  'Amministratore' : 'Steward',
+  'Spadaio'    : 'Swordsmith',
+  'Carovaniere': 'Teamster',
+  'Stagnaio'   : 'Tinker',
+  'Trovatore'  : 'Troubador',
+  'Vinattiere' : 'Vintner',
+  'Sarto'      : 'Weaver',
+}
+
+
 def get_name(gender='male', language='Occitan', surname=True, profession='random'):
+  # Support for Italian input
+  if gender not in ['male','female'] : 
+    if gender[0]=='m' : gender='male'
+    else : gender = 'female'
+  if language not in languages and language in ita_to_eng_lang :
+    language=ita_to_eng_lang[language]
+  if profession not in professions and profession in ita_to_eng_prof :
+    profession=ita_to_eng_prof[profession]
   s = get_surname(gender, language, profession) if surname else ''
   if len(s) : s = ' '+s
   return choice(names[gender][language]) + s

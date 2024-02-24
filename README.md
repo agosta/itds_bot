@@ -27,7 +27,7 @@ Con un po' di fortuna, le stesse cose potrebbero funzionare anche su altri siste
  - Per la creazione guidata, la procedura è identica, ma va omesso il parametro `r` nell'invocazione di `./itdschargen`
  
 ### Note
- - La generazione di PDF si basa su pypdf, che ha qualche problema -- ho prodotto una patch che viene installata automaticamente nell'ambiente virtuale
+ - La generazione di PDF si basa su pypdf, che ha qualche problema -- ho prodotto una patch che viene installata automaticamente nell'ambiente virtuale.
  
 ### TODO
 Idee per estensioni, divise per argomento.
@@ -35,13 +35,13 @@ Idee per estensioni, divise per argomento.
 #### Funzionalità del bot 
 Nuove funzionalità per il bot
 
- - Mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `!r volontà +2` o anche un menù\virtual keyboard
- - Supportare un modo di selezionare le opzioni più adatto ad un bot (virtual keyboard?)
+ - Mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `4d volontà +2` o anche un menù. Questo richiede di mantenere i personaggi in memoria.
+ - Supportare un modo di selezionare le opzioni più adatto ad un bot ([string select menu[(https://discord.com/developers/docs/interactions/message-components)?). Probabilmente questo richiede di ripensare un po' l'interazione con il generatore, perché ovviamente sarebbe più comodo consentire al giocatore di selezionare, ad esempio, tutte le abilità di mestiere in un'unica interazione. Per scelte più semplici (sì/no e simili) è ragionevole impiegare invece dei bottoni. Eventualmente si potrebbero impiegare i modali di tipo text input per gestire l'inserimento del nome e del luogo di nascita.
 
 #### Funzionalità del generatore
 Nuove funzionalità o miglioramenti e feature mancanti per il generatore di personaggi
 
- - Gestire l'equipaggiamento con la qualità dello stesso
+ - Gestire l'equipaggiamento consentendo la scelta della qualità dello stesso, eventualmente anche dei pregi associati
  - Gestire l'equipaggiamento in funzione dell'epoca
  - Gestire l'avanzamento (e talenti e ordini)
  - Armonizzare la generazione dei nomi con quella del personaggio (soprattutto dal punto di vista della professione)
@@ -50,9 +50,10 @@ Nuove funzionalità o miglioramenti e feature mancanti per il generatore di pers
 #### Supporto bot/hosting/etc.
 Funzionalità necessarie per consentire l'hosting del bot ed il suo corretto funzionamento
 
- - Verificare il corretto funzionamento della creazione contemporanea da più giocatori/magistri
- - Generare la scheda in un formato diverso se `pypdf` non funziona (banalmente in formato testuale?), eseguendo la verifica in modo automatico (tentando di creare un PG casuale subito dopo l'installazione)
- - Sanitizzare l'input dal bot (in ottica di hostare il bot da qualche parte)
+ - Verificare il corretto funzionamento della creazione contemporanea da più giocatori/magistri.
+ - Generare la scheda in un formato diverso se `pypdf` non funziona (banalmente in formato testuale?), eseguendo la verifica in modo automatico (tentando di creare un PG casuale subito dopo l'installazione).
+ - Sanitizzare l'input dal bot, in particolare le stringhe di testo libero.
+ - Non memorizzare permanentemente i pdf, e impiegare una memorizzazione persistente diversa dai file (Redis?). Consentire agli utenti di scaricare la scheda in json in modo da limitare la necessità di mantenere i file (per limitare lo spazio impiegato dal bot). In alternativa, si potrebbero ricaricare i personaggi dal PDF (più complicato, ma credo fattibile).
 
 #### Portabilità e facilità di installazione
 Modifiche per semplificare l'installazione
@@ -61,3 +62,4 @@ Modifiche per semplificare l'installazione
  - Quasi sicuramente sotto Windows ci saranno da fare piccoli aggiustamenti, in primis usare le primitive portabili di os.path
  - Comprendere la natura del problema nella scheda e, se è il caso, fare un bug report per `pypdf` con un MVE
  - Generare dei test di unità e integrazione
+ 
