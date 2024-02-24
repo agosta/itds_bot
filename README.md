@@ -41,7 +41,7 @@ Nuove funzionalità per il bot
 #### Funzionalità del generatore
 Nuove funzionalità o miglioramenti e feature mancanti per il generatore di personaggi
 
- - Gestire l'equipaggiamento consentendo la scelta della qualità dello stesso, eventualmente anche dei pregi associati
+ - Gestire l'equipaggiamento consentendo la scelta dei pregi associati alla qualità degli oggetti
  - Gestire l'equipaggiamento in funzione dell'epoca
  - Gestire l'avanzamento (e talenti e ordini)
  - Armonizzare la generazione dei nomi con quella del personaggio (soprattutto dal punto di vista della professione)
