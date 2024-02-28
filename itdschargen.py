@@ -546,10 +546,14 @@ class Personaggio:
   def retaggio_init(self):
     self.retaggio+=self.mod('gratia')
 
-  def abilità_a_livello(self,livello=1):
+  def abilità_a_livello(self,livello=1,greater=False):
     r = [ a for a in self.abilità if self.abilità[a].grado==livello ]
     r+= [ a for a in self.artigiano if self.artigiano[a].grado==livello ]
     r+= [ a for a in self.professione if self.professione[a].grado==livello ]
+    if not greater : return r   
+    r = [ a for a in self.abilità if self.abilità[a].grado>=livello ]
+    r+= [ a for a in self.artigiano if self.artigiano[a].grado>=livello ]
+    r+= [ a for a in self.professione if self.professione[a].grado>=livello ]
     return r
 
   def artigiano_a_livello(self,livello=1):

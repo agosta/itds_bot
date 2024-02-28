@@ -1,5 +1,6 @@
 #!/usr/env/ python3
 
+# Volontà
 def  v_bassifondi(self):
   if self.abilità['volontà'].grado>=3 and self.abilità['furtività'].grado>=3 and self.abilità['raggirare'].grado>=3 and self.abilità['usi e costumi'].grado>=3 :
     self.tfocus.append('interazioni sociali con umili')
@@ -65,185 +66,340 @@ def  v_volitivo(self):
     return True
   return False
 
+# Agilità
 def  v_combattimento_due_armi(self):
-  pass
+  if self.abilità['agilità'].grado>=3 and self.abilità['atletica'].grado>=3 and self.abilità['armi corte'].grado>=3 and (self.abilità['armi comuni'].grado>=3 or self.abilità['lotta'].grado>=3 or self.abilità['armi da guerra'].grado>=3) :
+    return True
+  return False
 
 def  v_equitazione(self):
-  pass
+  if self.abilità['agilità'].grado>=3 and self.abilità['atletica'].grado>=3 and self.abilità['cavalcare'].grado>=3 and self.abilità['empatia'].grado>=3 :
+    return True
+  return False
 
 def  v_grazia_felina(self):
-  pass
+  if self.abilità['agilità'].grado>=3 and self.abilità['atletica'].grado>=3 and self.abilità['furtività'].grado>=3 and (self.abilità['armi corte'].grado>=3 or self.abilità['manualità'].grado>=3) :
+    p.riflessi+=1
+    p.abilità['agilità'].dado_extra+=1
+    return True
+  return False
 
 def  v_lingua_sciolta(self):
-  pass
+  if self.abilità['agilità'].grado>=3 and self.abilità['intrattenere'].grado>=3 and self.abilità['raggirare'].grado>=3 and (self.abilità['autorità'].grado>=3 or self.abilità['empatia'].grado>=3) :
+    return True
+  return False
 
 def  v_senso_pericolo(self):
-  pass
+  if self.abilità['agilità'].grado>=4 and self.abilità['furtività'].grado>=4 and self.abilità['sopravvivenza'].grado>=4 :
+    self.caratteristiche['celeritas'].caratteristica+=1
+    return True
+  return False
 
 def  v_sicario(self):
-  pass
+  if self.abilità['agilità'].grado>=4 and self.abilità['furtività'].grado>=4 and self.abilità['armi corte'].grado>=4 :
+    return True
+  return False
 
 def  v_stile_due_armi(self):
-  pass
+  if self.abilità['agilità'].grado>=4 and self.abilità['armi corte'].grado>=4 and (self.abilità['armi da guerra'].grado>=4 or self.abilità['lotta'].grado>=4):
+    return True
+  return False
 
 def  v_tempismo(self):
-  pass
+  if self.abilità['agilità'].grado>=4 and self.abilità['armi da guerra'].grado>=4 and self.abilità['armi comuni'].grado>=4 :
+    return True
+  return False
 
 def  v_maestro_di_lotta(self):
-  pass
+  if self.abilità['agilità'].grado>=5 and self.abilità['lotta'].grado>=5 :
+    return True
+  return False
 
 def  v_maestro_di_scudo(self):
-  pass
+  if self.abilità['agilità'].grado>=5 and self.abilità['armi da guerra'].grado>=5 :
+    return True
+  return False
 
 def  v_ombra(self):
-  pass
+  if self.abilità['agilità'].grado>=5 and self.abilità['furtività'].grado>=5 :
+    return True
+  return False
 
 def  v_fulmine(self):
-  pass
+  if self.abilità['agilità'].grado>=6 :
+    a = set(self.abilità_a_livello(6)).intersection(['armi comuni', 'armi corte', 'armi da guerra', 'lotta'])
+    if len(a)>=2 :
+      self.caratteristiche['prudentia'].caratteristica+=1
+      return True
+  return False
 
+# Forza
 def  v_giostrare(self):
-  pass
+  if self.abilità['forza'].grado>=3 and self.abilità['armi comuni'].grado>=3 and self.abilità['armi da guerra'].grado>=3 and self.abilità['cavalcare'].grado>=3 :
+    return True
+  return False
 
 def  v_incoccare(self):
-  pass
+  if self.abilità['forza'].grado>=3 and self.abilità['atletica'].grado>=3 and (self.abilità['archi'].grado>=3 or self.abilità['balestre'].grado>=3) :
+    return True
+  return False
 
 def  v_minaccioso(self):
-  pass
+  if self.abilità['forza'].grado>=3 and self.abilità['atletica'].grado>=3 and self.abilità['autorità'].grado>=3 and self.abilità['lotta'].grado>=3 :
+    p.abilità['autorità'].dado_extra+=1
+    return True
+  return False
 
 def  v_sbracciata(self):
-  pass
+  if self.abilità['forza'].grado>=3 and self.abilità['atletica'].grado>=3 and (self.abilità['armi comuni'].grado>=3 or self.abilità['armi da guerra'].grado>=3) :
+    return True
+  return False
 
 def  v_carovaniere(self):
-  pass
+  if self.abilità['forza'].grado>=4 and self.abilità['mercatura'].grado>=4 and self.abilità['sopravvivenza'].grado>=4 :
+    return True
+  return False
 
 def  v_fanteria(self):
-  pass
+  if self.abilità['forza'].grado>=4 and self.abilità['armi comuni'].grado>=4 and self.abilità['armi da guerra'].grado>=4 :
+    return True
+  return False
 
 def  v_mente_guerriero(self):
-  pass
+  if self.abilità['forza'].grado>=4 and self.abilità['arti liberali'].grado>=4 and self.abilità['lotta'].grado>=4 :
+    self.caratteristiche['prudentia'].caratteristica+=1
+    return True
+  return False
 
 def  v_mitridatismo(self):
-  pass
+  if self.abilità['forza'].grado>=4 and self.abilità['guarigione'].grado>=4 :
+    return True
+  return False
 
 def  v_bestia_soma(self):
-  pass
+  if self.abilità['forza'].grado>=5 and self.abilità['atletica'].grado>=5 :
+    self.caratteristiche['fortitudo'].caratteristica+=1
+    self.fatica = [ i+1 for i in self.fatica ]
+    return True
+  return False
 
 def  v_duellante(self):
-  pass
+  if self.abilità['forza'].grado>=5 and self.abilità['armi corte'].grado>=5 :
+    return True
+  return False
 
 def  v_maestro_arma(self):
-  pass
+  if self.abilità['forza'].grado>=5 and self.abilità['armi da guerra'].grado>=5 and self.abilità['armi comuni'].grado>=5 :
+    return True
+  return False
 
 def  v_macchina_guerra(self):
-  pass
+  if self.abilità['forza'].grado>=6 and self.abilità['lotta'].grado>=6 :
+    self.caratteristiche['celeritas'].caratteristica+=1
+    return True
+  return False
 
+# Gratia
 def  v_affarista(self):
-  pass
+  if self.abilità['carisma'].grado>=3 and self.abilità['mercatura'].grado>=3 and self.abilità['raggirare'].grado>=3 and self.abilità['usi e costumi'].grado>=3 :
+    self.tfocus.append('interazioni sociali con borghesi')
+    return True
+  return False
 
 def  v_cortesia(self):
-  pass
+  if self.abilità['carisma'].grado>=3 and self.abilità['arti liberali'].grado>=3 and self.abilità['autorità'].grado>=3 and (self.abilità['intrattenere'].grado>=3 or self.abilità['raggirare'].grado>=3) :
+    return True
+  return False
 
 def  v_fattucchiera(self):
-  pass
+  if self.abilità['carisma'].grado>=3 and self.abilità['alchimia'].grado>=3 and self.abilità['raggirare'].grado>=3 and self.abilità['arti arcane'].grado>=3 :
+    return True
+  return False
 
 def  v_trovatore(self):
-  pass
+  if self.abilità['carisma'].grado>=3 and self.abilità['intrattenere'].grado>=3 and self.abilità['storia e leggende'].grado>=3 and self.abilità['usi e costumi'].grado>=3 :
+    return True
+  return False
 
 def  v_compagni_fedeli(self):
-  pass
+  if self.abilità['carisma'].grado>=4 and self.abilità['empatia'].grado>=4 and (self.abilità['cavalcare'].grado>=4 or self.abilità['sopravvivenza'].grado>=4) :
+    return True
+  return False
 
 def  v_retore(self):
-  pass
+  if self.abilità['carisma'].grado>=4 and self.abilità['arti liberali'].grado>=4 and self.abilità['intrattenere'].grado>=4 :
+    return True
+  return False
 
 def  v_seduttore(self):
-  pass
+  if self.abilità['carisma'].grado>=4 and self.abilità['raggirare'].grado>=4 and self.abilità['intrattenere'].grado>=4 :
+    self.caratteristiche['gratia'].caratteristica+=1
+    return True
+  return False
 
 def  v_senza_volto(self):
-  pass
+  if self.abilità['carisma'].grado>=4 and self.abilità['raggirare'].grado>=4 and self.abilità['furtività'].grado>=4 :
+    return True
+  return False
 
 def  v_intuito(self):
-  pass
+  if self.abilità['carisma'].grado>=5 and self.abilità['arti liberali'].grado>=5 :
+    self.caratteristiche['mens'].caratteristica+=1
+    return True
+  return False
 
 def  v_ispirare(self):
-  pass
+  if self.abilità['carisma'].grado>=5 and self.abilità['empatia'].grado>=5 and (self.abilità['intrattenere'].grado>=5 or self.abilità['autorità'].grado>=5) :
+    return True
+  return False
 
 def  v_rete_contatti(self):
-  pass
+  if self.abilità['carisma'].grado>=5 and self.abilità['usi e costumi'].grado>=5 :
+    return True
+  return False
 
 def  v_maestà(self):
-  pass
+  if self.abilità['carisma'].grado>=6 and self.abilità['autorità'].grado>=6 :
+    self.caratteristiche['audacia'].caratteristica+=1
+    return True
+  return False
 
+# Ragionamento
 def  v_determinazione(self):
-  pass
+  if self.abilità['ragionamento'].grado>=3 and self.abilità['autorità'].grado>=3 and (self.abilità['intrattenere'].grado>=3 or self.abilità['raggirare'].grado>=3 or self.abilità['arti liberali'].grado>=3) :
+    return True
+  return False
 
 def  v_ingegno(self):
-  pass
+  if self.abilità['ragionamento'].grado>=3 and self.abilità['arti liberali'].grado>=3 and self.abilità['storia e leggende'].grado>=3 (self.artigiano_a_livello(3) or self.professione_a_livello(3) :
+    return True
+  return False
 
 def  v_medico_campo(self):
-  pass
+  if self.abilità['ragionamento'].grado>=3 and self.abilità['empatia'].grado>=3 and self.abilità['guarigione'].grado>=3 and self.abilità['sopravvivenza'].grado>=3 :
+    return True
+  return False
 
 def  v_meditazione(self):
-  pass
+  if self.abilità['ragionamento'].grado>=3 and self.abilità['arti liberali'].grado>=3 and self.abilità['teologia'].grado>=3 and (self.abilità['arti arcane'].grado>=3 and self.abilità['empatia'].grado>=3) :
+    self.spirito+=self.caratteristiche['mens'].modificatore
+    self.spirito+=self.caratteristiche['prudentia'].modificatore
+    return True
+  return False
 
 def  v_ippocrate(self):
-  pass
+  if self.abilità['ragionamento'].grado>=4 and self.abilità['alchimia'].grado>=4 and self.abilità['guarigione'].grado>=4 :
+    self.abilità['guarigione'].dado_extra+=1
+    self.abilità['alchimia'].dado_extra+=1
+    return True
+  return False
 
 def  v_mondano(self):
-  pass
+  if self.abilità['ragionamento'].grado>=4 and self.abilità['arti liberali'].grado>=4 and self.abilità['usi e costumi'].grado>=4 :
+    self.abilità['carisma'].dado_extra+=1
+    return True
+  return False
 
 def  v_vagabondo(self):
-  pass
+  if self.abilità['ragionamento'].grado>=4 and self.abilità['storia e leggende'].grado>=4 and self.abilità['usi e costumi'].grado>=4 :
+    self.caratteristiche['audacia'].caratteristica+=1
+    return True
+  return False
 
 def  v_vita_strada(self):
-  pass
+  if self.abilità['ragionamento'].grado>=4 and self.abilità['furtività'].grado>=4 and self.abilità['usi e costumi'].grado>=4 :
+    self.abilità['percezione'].dado_extra+=1
+    return True
+  return False
 
 def  v_chiave_mappa(self):
-  pass
+  if self.abilità['ragionamento'].grado>=5 and self.artigiano_a_livello(5):
+    return True
+  return False
 
 def  v_colpo_occhio(self):
-  pass
+  if self.abilità['ragionamento'].grado>=5 and (self.abilità['manualità'].grado>=5 or self.abilità['sopravvivenza'].grado>=5) :
+    self.caratteristiche['prudentia'].caratteristica+=1
+    return True
+  return False
 
 def  v_eponimo(self):
-  pass
+  if self.abilità['ragionamento'].grado>=5 and self.abilità['arti liberali'].grado>=5 :
+    return True
+  return False
 
 def  v_custode_sapere(self):
-  pass
+  if self.abilità['ragionamento'].grado>=6 and (self.abilità['arti arcane'].grado>=6 or self.abilità['teologia'].grado>=6) :
+    self.caratteristiche['mens'].caratteristica+=1
+    return True
+  return False
 
+# Percezione
 def  v_arrocco(self):
-  pass
+  if self.abilità['percezione'].grado>=3 and self.abilità['arte della guerra'].grado>=3 and self.abilità['sopravvivenza'].grado>=3 :
+    if len(set(self.abilità_a_livello(3,greater=True)).intersection(['armi corte', 'armi comuni', 'armi da guerra', 'archi', 'balestre'])) :
+      return True
+  return False
 
 def  v_avanguardia(self):
-  pass
+  if self.abilità['percezione'].grado>=3 and self.abilità['autorità'].grado>=3 and self.abilità['furtività'].grado>=3 and self.abilità['sopravvivenza'].grado>=3 :
+    return True
+  return False
 
 def  v_battipista(self):
-  pass
+  if self.abilità['percezione'].grado>=3 and self.abilità['atletica'].grado>=3 and self.abilità['usi e costumi'].grado>=3 and self.abilità['sopravvivenza'].grado>=3 :
+    return True
+  return False
 
 def  v_scienza_antica(self):
-  pass
+  if self.abilità['percezione'].grado>=3 and self.abilità['alchimia'].grado>=3 and self.abilità['arti arcane'].grado>=3 and self.artigiano_a_livello(3) :
+    for a in self.artigiano :
+      self.artigiano[a].dado_extra+=1
+    return True
+  return False
 
 def  v_aggiustare_tiro(self):
-  pass
+  if self.abilità['percezione'].grado>=4 and self.abilità['atletica'].grado>=4 and self.abilità['archi'].grado>=4 :
+    return True
+  return False
 
 def  v_bruciapelo(self):
-  pass
+  if self.abilità['percezione'].grado>=4 and self.abilità['balestre'].grado>=4 :
+    return True
+  return False
 
 def  v_cercatore(self):
-  pass
+  if self.abilità['percezione'].grado>=4 and self.abilità['furtività'].grado>=4 and self.abilità['sopravvivenza'].grado>=4 :
+    self.caratteristiche['prudentia'].caratteristica+=1
+    return True
+  return False
 
 def  v_tattiche_guerriglia(self):
-  pass
+  if self.abilità['percezione'].grado>=4 and self.abilità['arte della guerra'].grado>=4 and self.abilità['sopravvivenza'].grado>=4 :
+    return True
+  return False
 
 def  v_armonioso(self):
-  pass
+  if self.abilità['percezione'].grado>=5 and self.abilità['atletica'].grado>=5 :
+    self.caratteristiche['celeritas'].caratteristica+=1
+    return True
+  return False
 
 def  v_cecchino(self):
-  pass
+  if self.abilità['percezione'].grado>=5 and self.abilità['balestre'].grado>=5 :
+    return True
+  return False
 
 def  v_occhio_falco(self):
-  pass
+  if self.abilità['percezione'].grado>=5 and self.abilità['archi'].grado>=5 and self.abilità['atletica'].grado>=5 :
+    return True
+  return False
 
 def  v_giudice(self):
-  pass
+  if self.abilità['percezione'].grado>=6 and self.abilità['autorità'].grado>=6 and (self.abilità['arti liberali'].grado>=6 or self.abilità['raggirare'].grado>=6) :
+    self.caratteristiche['gratia'].caratteristica+=1
+    return True
+  return False
 
 talenti = {
  'bassifondi' : v_bassifondi,
