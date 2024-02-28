@@ -271,7 +271,7 @@ def  v_determinazione(self):
   return False
 
 def  v_ingegno(self):
-  if self.abilità['ragionamento'].grado>=3 and self.abilità['arti liberali'].grado>=3 and self.abilità['storia e leggende'].grado>=3 (self.artigiano_a_livello(3) or self.professione_a_livello(3) :
+  if self.abilità['ragionamento'].grado>=3 and self.abilità['arti liberali'].grado>=3 and self.abilità['storia e leggende'].grado>=3 and (self.artigiano_a_livello(3) or self.professione_a_livello(3)) :
     return True
   return False
 
