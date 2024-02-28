@@ -138,6 +138,13 @@ def fill(p):
   for e in p.eventi:
     fields[f'Eventi {i}']=e
     i+=1
+
+  i=1
+  for e in p.talenti:
+    fields[f'Talenti {i}']=e
+    fields[f'Talenti{i}']=e
+    i+=1
+
   return fields
   #p.luogo_nascita 
   #p.retaggio   

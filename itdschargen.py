@@ -12,8 +12,9 @@ from random import choice, randint
 from strenum import StrEnum
 from string import capwords
 from equip import TipoOggetto, Qualità, Conio
+import talenti
 
-global random_gen
+random_gen = False
 
 def d6(n):
   return [ randint(1,6) for i in range(n) ]
@@ -503,7 +504,9 @@ class Personaggio:
   armi       : List[Arma] = field(default_factory=list)
   armatura   : Armatura = field(default_factory=lambda: Armatura(data['armature']['abiti normali']))
   equipaggiamento : List[Oggetto] = field(default_factory=list)
-
+  talenti    : list[str] = field(default_factory=list)
+  tfocus     : list[str] = field(default_factory=list)
+  
   def mod(self,c):
     return self.caratteristiche[c].modificatore
 
@@ -548,11 +551,41 @@ class Personaggio:
     r+= [ a for a in self.artigiano if self.artigiano[a].grado==livello ]
     r+= [ a for a in self.professione if self.professione[a].grado==livello ]
     return r
+
+  def artigiano_a_livello(self,livello=1):
+    r = [ a for a in self.artigiano if self.artigiano[a].grado>=livello ]
+    return len(r)>=1
+    
+  def professione_a_livello(self,livello=1):
+    r = [ a for a in self.professione if self.professione[a].grado>=livello ]
+    return len(r)>=1
     
   def incrementa_abilità(self,abilità,livello):
     if abilità in self.abilità : self.abilità[abilità].grado=livello
     elif abilità in self.artigiano : self.artigiano[abilità].grado=livello
     elif abilità in self.professione : self.professione[abilità].grado=livello
+
+  def livello_abilità(self,abilità):
+    if abilità in self.abilità : return self.abilità[abilità].grado
+    elif abilità in self.artigiano : return self.artigiano[abilità].grado
+    elif abilità in self.professione : return self.professione[abilità].grado
+    return 0
+
+  def incrementa_abilità_con_pe(self,abilità):
+    l = self.livello_abilità(abilità)
+    costo = 0
+    if   l == 0 and self.pe_liberi>=10: costo = 10
+    elif l == 1 and self.pe_liberi>=4 : costo =  4
+    elif l == 2 and self.pe_liberi>=6 : costo =  6
+    elif l == 3 and self.pe_liberi>=8 : costo =  8
+    elif l == 4 and self.pe_liberi>=10: costo = 10
+    elif l == 5 and self.pe_liberi>=12: costo = 12
+    if costo == 0 : return False # impossibile aumentare il livello
+    self.incrementa_abilità(abilità,l+1)
+    self.pe_liberi-=costo
+    self.pe_spesi +=costo
+    return True
+
 
 # GESTIONE INPUT O GENERAZIONE CASUALE
 def sinput(nome, lis):
@@ -848,7 +881,7 @@ def creazione(random=False):
       for i in range(p.abilità[a].grado//3):
         p.abilità[a].focus.append(sinput(f"focus per {a}", data['focus'][a]))
 
-  #TODO equipaggiamento: oggetti diversi da armi e armature, definizione della qualità degli oggetti e, nel caso di scelta casuale, impatto delle abilità di mestiere
+  #TODO equipaggiamento: nel caso di scelta casuale, impatto delle abilità di mestiere
   while True:
     armatura = sinput('armatura', list(data['armature'].keys()))
     q = 'buona' if 'militare' in p.cultura else cinput('qualità', Qualità)
@@ -895,6 +928,21 @@ def creazione(random=False):
   # Personaggio completo
   return p
 
+def aggiorna_personaggio(p):
+  p.pe_liberi += iinput("PE da aggiungere:",0,7) # 0 per consentire di spendere PE anche senza averne aggiunti; 7 è il massimo per sessione
+  if p.pe_liberi>=4 and sinput(f"aumentare o acquisire abilità? ", ["sì", "no"])=='sì':
+    while True:
+      abilità = cinput(f"abilità libere (punti residui {p.pe_liberi})",AbLibere)
+      r = p.incrementa_abilità_con_pe(abilità)
+      if sinput(f"Incremento {'riuscito' if r else 'fallito'}. Aumentare o acquisire altre abilità? ", ["sì", "no"])=='no':
+        break
+  # verifica e scelta dei focus
+  for a in p.abilità :
+    if p.abilità[a].mestiere and p.abilità[a].grado>=3:
+      for i in range((p.abilità[a].grado//3)-len(p.abilità[a].focus)):
+        p.abilità[a].focus.append(sinput(f"focus per {a}", data['focus'][a]))
+  # verifica e aggiunta talenti
+  talenti.verifica_talenti(p)
 
 # JSON
 def tojson(p):
@@ -914,6 +962,9 @@ if __name__=='__main__':
     if a in ['random', 'rand', 'r'] : random = True
     elif exists(a) : 
       c = fromjson(a)
+      aggiorna_personaggio(c)
+      with open('./json/'+c.nome+'.json',"w") as fout:
+        fout.write(tojson(c))
   while not c: 
     try :
       c = creazione(random=random)
