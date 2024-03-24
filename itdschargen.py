@@ -14,6 +14,9 @@ from string import capwords
 from equip import TipoOggetto, Qualità, Conio
 import talenti
 
+# La variabile globale random_gen determina se il personaggio è generato casualmente
+# oppure attraverso l'interazione con l'utente. Tutte le funzioni di input
+# verificano il valore di random_gen per determinare il da farsi
 random_gen = False
 
 def d6(n):
@@ -137,7 +140,9 @@ def e_percorso(self):
 def e_talento(self):
   self.abilità[sinput('abilità base', ['volontà', 'carisma', 'forza', 'agilità', 'ragionamento', 'percezione' ])].dado_extra+=1
 
-
+# Struttura con la maggior parte dei dati necessari per la creazione e gestione
+# dei personaggi; probabilmente sarebbe meglio in futuro separare il tutto in 
+# un file yaml.
 data = {
 
 'lingue' : [ 'Arabo', 'Castigliano', 'Catalano', 'Cimrico', 'Ebraico', 'Francese', 'Frisone', 'Gaelico', 'Gallego', 'Greco', 'Inglese', 'Ladino', 'Latino', 'Portoghese', 'Provenzale', 'Scandinavo', 'Slavo', 'Tedesco', 'Turco', 'Italiano', 'Greco antico', 'Aramaico', 'Ungherese', 'Basco' ],
@@ -431,6 +436,7 @@ class CaseInsensitiveEnum(StrEnum):
                 return member
         return None
 
+# Enumerativi che rappresentano le principali scelte/liste di opzioni
 Culture  = StrEnum('Culture', list(data['culture'].keys()))
 Ceti     = StrEnum('Ceti', list(data['ceto'].keys()))
 Lingue   = CaseInsensitiveEnum('Lingue', data['lingue'])
@@ -593,6 +599,8 @@ class Personaggio:
 
 # GESTIONE INPUT O GENERAZIONE CASUALE
 def sinput(nome, lis):
+  """Input scelto da una lista di stringhe; se random_gen è impostato è solo una 
+     scelta casuale"""
   global random_gen
   if not len(lis): raise ITDSException(f"{nome} non può essere scelto, perché non ci sono opzioni disponibili")
   if random_gen : return choice(lis)
@@ -607,10 +615,13 @@ def sinput(nome, lis):
     if r not in lis : r = None
   return r.lower()
 
-def cinput(nome, ecls):    
+def cinput(nome, ecls): 
+  """Input scelto all'interno di una enum (ecls)"""
   return sinput(nome, [m.name for m in ecls])
 
 def ainput(nome, ecls, pers=None, remaining=1):
+  """Input scelto tra una lista di abilità; se random_gen è impostato allora sceglie 
+     l'abilità a caso, cercando di evitare quelle già prese"""
   global random_gen
   if random_gen and remaining>1:
      ab = list(professioni[pers.ceto][pers.mestiere]['abilità'])
@@ -627,6 +638,8 @@ def ainput(nome, ecls, pers=None, remaining=1):
   return sinput(nome, [m.name for m in ecls])
 
 def iinput(nome, min_=None, max_=None):
+  """Input numerico, nel range min_/max_ (inclusi); se random_gen è impostato, 
+     sceglie a caso (min_ e max_ devono essere impostati!)"""
   global random_gen
   if random_gen :
     if not min_ : min_=1
@@ -643,11 +656,15 @@ def iinput(nome, min_=None, max_=None):
   return r
 
 def distanza_ceti(ceto1, ceto2):
+  """Calcola la distanza tra due ceti sociali, serve per determinare l'eventuale 
+     costo aggiuntivo di una abilità"""
   c1 = data['ceto'][ceto1]['retaggio']
   c2 = data['ceto'][ceto2]['retaggio']
   return c1-c2
 
 def distanza_abilità(ceto, abilità):
+  """Calcola la distanza tra il ceto sociale associato ad una abilità e quello del
+     personaggio, per determinare l'eventuale costo aggiuntivo dell'abilità"""
   ceto_ab = None
   for c in data['ceto']:
     if abilità in data['ceto'][c]['mestiere']: 
@@ -655,6 +672,9 @@ def distanza_abilità(ceto, abilità):
   return 0
 
 def input_abilità_speciale(tipo, pers, mestiere=False):
+  """Input di una abilità speciale; questa funzione implementa la seconda fase della
+     scelta, una volta noto il tipo di abilità; se la scelta è casuale bisogna evitare
+     di prendere due volte la stessa abilità"""
   global random_gen
   if random_gen : 
     l = [ e for e in professioni[pers.ceto][pers.mestiere]['abilità_speciali'] if e['abilità']==tipo ]
@@ -679,6 +699,10 @@ def input_abilità_speciale(tipo, pers, mestiere=False):
     return AbilitàSpeciale(nome=nome,caratteristica=sottotipo,grado=1,mestiere=mestiere)
 
 def input_info_base(genere):
+  """Input di alcune informazioni base del personaggio, come il nome e la provenienza 
+     geografica/culturale; vanno fatte in una sola funzione perché, se random_gen 
+     è impostato, allora devono essere gestite in modo casuale ma coerente, appoggiandosi
+     alla libreria di generazione dei nomi"""
   global random_gen
   if random_gen : 
     from namegen import get_name
@@ -690,6 +714,8 @@ def input_info_base(genere):
   return nome, luogo
 
 def input_mestiere(pers):
+  """Input del mestiere; non ha un particolare effetto, ma se è attivata la scelta
+     casuale le scelte fatte in seguito saranno influenzate da questa"""
   global random_gen
   if random_gen :
     return choice(list(professioni[pers.ceto].keys()))
@@ -697,6 +723,8 @@ def input_mestiere(pers):
     return input("Mestiere:\n>>>\t")
 
 def input_cultura(pers):
+  """Input dei due tratti culturali; se random_gen è impostato, la scelta è determinata
+     dal luogo di nascita"""
   global random_gen
   if random_gen :
     return tratti_per_regione[pers.luogo_nascita]
@@ -708,6 +736,7 @@ def input_cultura(pers):
     return cultura1, cultura2
 
 class ITDSException(Exception):
+  """Eccezioni specifiche del generatore. Servono per poter fare catch selettivi"""
   pass
 
 # CREAZIONE DEL PERSONAGGIO
@@ -933,6 +962,7 @@ def creazione(random=False):
   return p
 
 def aggiorna_personaggio(p):
+  """Funzione che permette l'aggiornamento di una scheda, spendendo punti esperienza e/o aggiungendoli"""
   p.pe_liberi += iinput("PE da aggiungere:",0,7) # 0 per consentire di spendere PE anche senza averne aggiunti; 7 è il massimo per sessione
   if p.pe_liberi>=4 and sinput(f"aumentare o acquisire abilità? ", ["sì", "no"])=='sì':
     while True:
@@ -956,7 +986,7 @@ def fromjson(fname):
   with open(fname,"r") as fin:
     return Personaggio.from_json(fin.read())
 
-
+# Main, impiegato sia nella versione a linea di comando sia nel bot
 if __name__=='__main__':
   from sys import argv
   from os.path import exists
@@ -977,5 +1007,7 @@ if __name__=='__main__':
     except ITDSException as e:
       print(e)
   print(c)
+  # Questa stampa è necessaria per consentire al bot di recuperare il nome del
+  # personaggio, e pertanto anche quello del file generato!
   print(c.nome)
   
