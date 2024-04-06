@@ -78,11 +78,11 @@ def roll_itds(dice=2, extra=0, score=0, skill=0, bonus_penalty=0, difficulty=1):
       drop.append(r_reduced[-1])
       r_reduced=r_reduced[:-1]
       remaining_extra-=1
-    result = f' tira {dice+extra}d6 {f"vs {score}" if score else ""}: {r} {f"e scarta {drop}" if len(drop) else ""}, ridotti con {skill} punti abilità a {r_reduced}, per un totale di {sum(r_reduced)}'
+    result = f' tira {dice+extra}d6 {f"vs {score}" if score else ""}: {r} {f"e scarta {drop}" if len(drop) else ""}, ridotti con {skill_copy} punti abilità a {r_reduced}, per un totale di {sum(r_reduced)}'
     successes=r_reduced.count(1)
     success=sum(r_reduced)<=score and successes+1+bonus_penalty>=difficulty
     if success:
-      return result+f', ottenendo **{successes+1} successi**'
+      return result+f', ottenendo **{successes+1+bonus_penalty} successi**'
     else:
       return result+f', ottenendo un fallimento'
   else:
@@ -92,7 +92,7 @@ def roll_itds(dice=2, extra=0, score=0, skill=0, bonus_penalty=0, difficulty=1):
       r_reduced=r_reduced[:-extra]
     result = f' tira {dice+extra}d6 {f"vs {score}" if score else ""}: {r} {f"e scarta {drop}" if len(drop) else ""} ridotti con {skill_copy} punti abilità a {r_reduced} per un totale di {sum(r_reduced)}'
     successes=r_reduced.count(1)
-    return result+f', ottenendo **{successes+1} successi**, se il tiro è inferiore al punteggio di caratteristica'
+    return result+f', ottenendo **{successes+1+bonus_penalty} successi**, se il tiro è inferiore al punteggio di caratteristica'
 
 # Parsing dei messaggi discord che richiedono il tiro di dadi
 import re
