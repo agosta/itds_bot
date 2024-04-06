@@ -54,6 +54,7 @@ def roll_itds(dice=2, extra=0, score=0, skill=0, bonus_penalty=0, difficulty=1):
   difficulty    difficoltà (al momento non impiegato) [default 1]
   returns   stringa di testo che descrive il risultato
   '''
+  skill_copy = skill # serve una copia per stampare
   r = sorted(d6(dice+extra))  # ordina i risultati in senso crescente
   print(r)
   # Applica il punteggio di abilità in modo da ridurre a 1 più dadi possibile
@@ -89,7 +90,7 @@ def roll_itds(dice=2, extra=0, score=0, skill=0, bonus_penalty=0, difficulty=1):
     if extra>0: 
       drop=r_reduced[-extra:]
       r_reduced=r_reduced[:-extra]
-    result = f' tira {dice+extra}d6 {f"vs {score}" if score else ""}: {r} {f"e scarta {drop}" if len(drop) else ""} ridotti con {skill} punti abilità a {r_reduced} per un totale di {sum(r_reduced)}'
+    result = f' tira {dice+extra}d6 {f"vs {score}" if score else ""}: {r} {f"e scarta {drop}" if len(drop) else ""} ridotti con {skill_copy} punti abilità a {r_reduced} per un totale di {sum(r_reduced)}'
     successes=r_reduced.count(1)
     return result+f', ottenendo **{successes+1} successi**, se il tiro è inferiore al punteggio di caratteristica'
 
