@@ -36,7 +36,7 @@ Idee per estensioni, divise per argomento.
 Nuove funzionalità per il bot
 
  - Mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `4d volontà +2` o anche un menù. Questo richiede di mantenere i personaggi in memoria.
- - Supportare un modo di selezionare le opzioni più adatto ad un bot ([string select menu[(https://discord.com/developers/docs/interactions/message-components)?). Probabilmente questo richiede di ripensare un po' l'interazione con il generatore, perché ovviamente sarebbe più comodo consentire al giocatore di selezionare, ad esempio, tutte le abilità di mestiere in un'unica interazione. Per scelte più semplici (sì/no e simili) è ragionevole impiegare invece dei bottoni. Eventualmente si potrebbero impiegare i modali di tipo text input per gestire l'inserimento del nome e del luogo di nascita.
+ - Supportare un modo di selezionare le opzioni più adatto ad un bot ([string select menu](https://discord.com/developers/docs/interactions/message-components)?). Probabilmente questo richiede di ripensare un po' l'interazione con il generatore, perché ovviamente sarebbe più comodo consentire al giocatore di selezionare, ad esempio, tutte le abilità di mestiere in un'unica interazione. Per scelte più semplici (sì/no e simili) è ragionevole impiegare invece dei bottoni. Eventualmente si potrebbero impiegare i modali di tipo text input per gestire l'inserimento del nome e del luogo di nascita.
 
 #### Funzionalità del generatore
 Nuove funzionalità o miglioramenti e feature mancanti per il generatore di personaggi
