@@ -152,6 +152,7 @@ def parse_and_roll(msg):
 
 def find_characteristic_for_skill(skill, caratteristiche):
   """Cerca un'abilità specifica all'interno di tutte le caratteristiche e restituisce il valore della caratteristica associata."""
+  skill = skill.lower()
   for key, details in caratteristiche.items():
     if skill in details.abilità:  # Accede all'attributo abilità della classe Caratteristica, che è una lista
       return details.caratteristica  # Restituisce il valore della caratteristica
