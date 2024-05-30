@@ -185,7 +185,7 @@ def character_based_parse_and_roll(msg):
   extra = character.abilità[skill].dado_extra
   score = find_characteristic_for_skill(skill, character.caratteristiche)
   if score == None : return None
-  skill = character.abilità[skill]].grado
+  skill = character.abilità[skill].grado
   bonus_penalty = int(d['bonus_value']) * (-1 if d['bonus_sign'] == '-' else 1)  # converte il segno +/-
   return roll_itds(
     dice=dice - extra,  # qui rimuove i dadi extra dal totale, poiché roll li considera in automatico
