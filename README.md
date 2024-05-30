@@ -35,7 +35,6 @@ Idee per estensioni, divise per argomento.
 #### Funzionalità del bot 
 Nuove funzionalità per il bot
 
- - Mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `4d volontà +2` o anche un menù. Questo richiede di mantenere i personaggi in memoria.
  - Supportare un modo di selezionare le opzioni più adatto ad un bot ([string select menu](https://discord.com/developers/docs/interactions/message-components)?). Probabilmente questo richiede di ripensare un po' l'interazione con il generatore, perché ovviamente sarebbe più comodo consentire al giocatore di selezionare, ad esempio, tutte le abilità di mestiere in un'unica interazione. Per scelte più semplici (sì/no e simili) è ragionevole impiegare invece dei bottoni. Eventualmente si potrebbero impiegare i modali di tipo text input per gestire l'inserimento del nome e del luogo di nascita.
 
 #### Funzionalità del generatore
@@ -62,4 +61,9 @@ Modifiche per semplificare l'installazione
  - Quasi sicuramente sotto Windows ci saranno da fare piccoli aggiustamenti, in primis usare le primitive portabili di os.path
  - Comprendere la natura del problema nella scheda e, se è il caso, fare un bug report per `pypdf` con un MVE
  - Generare dei test di unità e integrazione
+
+
+### Changelog
+
+ - Maggio 2024: Aggiunta la [capacità](https://github.com/Angelo-De-Nadai/itds_bot/) di mantenere per ciascun giocatore un personaggio attivo con i punteggi del quale fare tiri senza dover specificare i punteggi, attraverso un comando del tipo `4d volontà +2` o anche un menù. 
  
