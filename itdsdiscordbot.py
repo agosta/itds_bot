@@ -126,7 +126,7 @@ def associate_character_to_user(msg):
 
 
 # Parsing dei messaggi discord che richiedono il tiro di dadi senza personaggio associato
-import re
+import regex as re
 rg=r"(?P<dice>\d+)d\s*(?P<drop>\d*)(\s*a(?P<skill>\d+)){0,1}(\s*(?P<bonus_sign>\+|\-)(?P<bonus_value>\d+)){0,1}(\s*vs\s*(?P<score>\d+)){0,1}"
 rgc=re.compile(rg, re.IGNORECASE)
 
@@ -160,8 +160,9 @@ def find_characteristic_for_skill(skill, caratteristiche):
 
 
 # Parsing dei messaggi discord che richiedono il tiro di dadi con personaggio associato
-rg = r"(?P<dice>\d+)d\s*(?P<skill>\w+)(\s*(?P<bonus_sign>\+|\-)?(?P<bonus_value>\d+))?"
-rgp = re.compile(rg, re.IGNORECASE)
+from itdschargen import EAbilità as abilità
+rg = r"(?P<dice>\d+)d\s*(?P<skill>\L<skills>)(\s*(?P<combin>\L<skills>))?(\s*(?P<bonus_sign>\+|\-)?(?P<bonus_value>\d+))?"
+rgp = re.compile(rg, re.IGNORECASE, skills=list(abilità))
 
 def character_based_parse_and_roll(msg):
   '''Interpreta un messaggio discord che contiene una specifica per il lancio di dadi ed esegue il lancio
@@ -186,6 +187,12 @@ def character_based_parse_and_roll(msg):
   score = find_characteristic_for_skill(skill, character.caratteristiche)
   if score == None : return None
   skill = character.abilità[skill].grado
+  
+  if 'combin' in d : # aggiunge gradi bonus
+    comb = d['combin'].lower()
+    if comb in character.abilità:
+      skill += character.abilità[comb].grado
+  
   bonus_penalty = int(d['bonus_value']) * (-1 if d['bonus_sign'] == '-' else 1)  # converte il segno +/-
   return roll_itds(
     dice=dice - extra,  # qui rimuove i dadi extra dal totale, poiché roll li considera in automatico
@@ -246,9 +253,10 @@ async def on_message(msg):
   # tutti i comandi successivi sono vincolati a creator_process == None: durante la creazione del personaggio non è possibile eseguire altri comandi
   # Aggiungere l'opzione per scegliere un personaggio
   if '!choose' in content and author not in creator_process:
-    character_name = content.split(' ', 1)[1].strip()
+    nome = content[len('!choose '):].strip()
     response = associate_character_to_user(msg)
     await msg.channel.send(response)
+    await msg.author.send(f"Hai scelto {nome}", file=discord.File(f'./pdf/{nome}.pdf')) # invia il file PDF solo al giocatore
   if '!list' in content and author not in creator_process:
     chars = [ c[:-5] for c in listdir('./json') ]
     await msg.channel.send(f"Personaggi disponibili: {'; '.join(chars)}.") 
