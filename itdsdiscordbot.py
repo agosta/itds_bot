@@ -25,6 +25,15 @@ try : from secrets import random as rnd
 except ImportError : 
   from random import random as rnd
 
+# debug prints
+from inspect import currentframe
+
+def get_linenumber():
+    cf = currentframe()
+    return cf.f_back.f_lineno
+    
+
+    
 # gestione dei tiri di dado
 def d(n,faces):
   '''Lancio di dadi base
@@ -180,7 +189,7 @@ def character_based_parse_and_roll(msg):
   d = res.groupdict()  # estrae i dati
   for x in d:  # imposta i default
     if not d[x]: d[x] = 0
-  print(d)
+  print("data:", d)
   dice = int(d['dice'])
   skill = d['skill'].lower()
   if skill not in character.abilità: return None
@@ -192,7 +201,12 @@ def character_based_parse_and_roll(msg):
   skill = character.abilità[skill].grado
   
   if 'combin' in d : # aggiunge gradi bonus
-    comb = d['combin'].lower()
+    print("combo:", d['combin'])
+    try :
+      comb = d['combin'].lower()
+    except Exception as e :
+      print("combo:", e)
+      comb = None
     if comb in character.abilità:
       skill += character.abilità[comb].grado
   
@@ -267,7 +281,8 @@ async def on_message(msg):
   res = None
   if author in user_characters:
     try : res = character_based_parse_and_roll(msg)
-    except Exception : pass
+    except Exception as e: 
+      print(get_linenumber(),e)
   if not res:
     res = parse_and_roll(content)
   if res and author not in creator_process:
@@ -303,7 +318,8 @@ async def on_message(msg):
         language=namegen.regions[p]
       if p in namegen.names['male'] : language=[p]
       try : n=int(p)
-      except ValueError : pass
+      except ValueError : 
+        print(get_linenumber(),e)
     # generazione casuale
     response = '\n'.join([ namegen.get_name(gender,choice(language),True,'random') for i in range(n) ])
     await msg.channel.send(response)
