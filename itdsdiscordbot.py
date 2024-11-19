@@ -176,7 +176,7 @@ def character_based_parse_and_roll(msg):
   # Match del messaggio per estrarre i parametri
   res = rgp.search(content)  # esegue il match
   if not res: return None  # match fallito
-  else print("matched: ", res)
+  else : print("matched: ", res)
   d = res.groupdict()  # estrae i dati
   for x in d:  # imposta i default
     if not d[x]: d[x] = 0
@@ -184,11 +184,11 @@ def character_based_parse_and_roll(msg):
   dice = int(d['dice'])
   skill = d['skill'].lower()
   if skill not in character.abilità: return None
-  else print("matched: ", skill)
+  else : print("matched: ", skill)
   extra = character.abilità[skill].dado_extra
   score = find_characteristic_for_skill(skill, character.caratteristiche)
   if score == None : return None
-  else print("found score: ", score)
+  else : print("found score: ", score)
   skill = character.abilità[skill].grado
   
   if 'combin' in d : # aggiunge gradi bonus
