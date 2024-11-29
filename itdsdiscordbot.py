@@ -127,16 +127,16 @@ def associate_character_to_user(msg):
   if not content.startswith('!choose'):
     return "Comando non valido. Usa '!choose <nome_personaggio>'."
   character_name = content[len('!choose '):].strip()  # rimuove '!choose' e ottiene il nome del personaggio
+  if character_name not in chars : 
+    print(chars)
+    character_name = getcs(character_name,chars, cutoff=0)[0]
   try:
-    if character_name not in chars : 
-      print(chars)
-      character_name = getcs(character_name,chars, cutoff=0)[0]
     character = fromjson(f'./json/{character_name}.json')  # carica il personaggio dal file JSON
   except FileNotFoundError:
     return f"Personaggio {character_name} non trovato."
 
   user_characters[author] = character  # associa il personaggio all'utente
-  return f"Personaggio {character_name} associato all'utente **{author}**."
+  return f"Personaggio {character_name} associato all'utente **{author}**.", character_name
 
 
 # Parsing dei messaggi discord che richiedono il tiro di dadi senza personaggio associato
@@ -275,8 +275,7 @@ async def on_message(msg):
   # tutti i comandi successivi sono vincolati a creator_process == None: durante la creazione del personaggio non è possibile eseguire altri comandi
   # Aggiungere l'opzione per scegliere un personaggio
   if '!choose' in content and author not in creator_process:
-    nome = content[len('!choose '):].strip()
-    response = associate_character_to_user(msg)
+    response, nome = associate_character_to_user(msg)
     await msg.channel.send(response)
     await msg.author.send(f"Hai scelto {nome}", file=discord.File(f'./pdf/{nome}.pdf')) # invia il file PDF solo al giocatore
   if '!list' in content and author not in creator_process:
