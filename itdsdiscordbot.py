@@ -112,20 +112,25 @@ from itdschargen import fromjson
 # setup delle variabili globali del bot
 user_characters = {}
 
+# Closest string match 
+from difflib import get_close_matches as getcs
+
 
 def associate_character_to_user(msg):
   '''Associa un personaggio a un utente nel dizionario user_characters
   msg      contenuto di un messaggio discord che contiene il nome del personaggio
   '''
   global user_characters
+  chars = [ c[:-5] for c in listdir('./json') ] # ottiene la lista dei PG disponibili
   author = str(msg.author).split("#")[0]  # estrae il nome dell'autore del messaggio
   content = msg.content.strip()  # ottiene il contenuto del messaggio
   if not content.startswith('!choose'):
     return "Comando non valido. Usa '!choose <nome_personaggio>'."
-
   character_name = content[len('!choose '):].strip()  # rimuove '!choose' e ottiene il nome del personaggio
-
   try:
+    if character_name not in chars : 
+      print(chars)
+      character_name = getcs(character_name,chars, cutoff=0)[0]
     character = fromjson(f'./json/{character_name}.json')  # carica il personaggio dal file JSON
   except FileNotFoundError:
     return f"Personaggio {character_name} non trovato."
