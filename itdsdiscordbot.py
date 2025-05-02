@@ -242,6 +242,28 @@ intents.message_content = True # Il bot deve poter leggere almeno i messaggi
 creator_process = {}  # Se è attivo il programma di creazione dei personaggi, va salvato l'oggetto corrispondente qui, con lo username dell'autore come chiave; questo consente di creare più personaggi contemporaneamente
 prompt = ["\n>>>\t",pexpect.EOF] # il prompt atteso dal programma di creazione dei personaggi, indica che la stampa del messaggio è pronta
 
+import json
+class DiscordChannels(list):
+  def __init__(self):
+    super().__init__()
+    try:
+      with open("channels.json","r") as fin:
+        j = json.load(fin)
+        self+=j
+    except Exception: pass
+    
+  def append(self, chn):
+    super().append(int(chn.id))
+    with open("channels.json","w") as fout:
+      json.dump(list(self),fout)
+  
+  def remove(self, chn):
+    super().remove(int(chn.id))
+    with open("channels.json","w") as fout:
+      json.dump(list(self),fout)
+
+channels = DiscordChannels()
+
 # gestione degli eventi 
 @client.event
 async def on_ready():
@@ -256,6 +278,12 @@ async def on_message(msg):
   '''Evento principale, gestisce tutti i messaggi
   '''
   global creator_process
+  if msg.channel.id not in channels :
+    if "!itds_act" in msg.content : channels.append(msg.channel)
+    return
+  if "!itds_deact" in msg.content : 
+    channels.remove(msg.channel)
+    return
   if msg.author==client.user: return # ignora i propri messaggi
   author = str(msg.author).split("#")[0] # estrae il nome dell'autore del messaggio
   content = msg.content
