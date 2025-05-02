@@ -358,6 +358,9 @@ async def on_message(msg):
   # messaggio d'aiuto
   if '!h' in content and author not in creator_process:
     response = f"""Messaggio di aiuto:
+ Attivazione e disattivazione (per canale):
+    !itds_act
+    !itds_deact   
  Creazione dei personaggi giocanti:
     !itdsc       Creazione del personaggio interattiva
     !itdsrand    Creazione di un personaggio casuale
